@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "121970113693",
+    "project_id": "airnests-app-39a0a",
+    "storage_bucket": "airnests-app-39a0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121970113693:android:787cb03c4de2926fb42874",
+        "android_client_info": {
+          "package_name": "com.airnests.cohost.cleaner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121970113693-miroasai7d2d7ug9bl46fueao6akagdc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.airnests.cohost.cleaner",
+            "certificate_hash": "9dc389bf6f7a2634c11f5923b69abd36c7eac381"
+          }
+        },
+        {
+          "client_id": "121970113693-n6au9k87nbmo9qbpgm9aoddpopcjabrs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE--XsDngOK9kzvYvJzQwjW-5coyLa6sY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121970113693-n6au9k87nbmo9qbpgm9aoddpopcjabrs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "121970113693-gvvgsft4ks3f7s9o2235teeld3m157dh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.airnestsApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121970113693:android:4d39ac097ea795d2b42874",
+        "android_client_info": {
+          "package_name": "com.customer.airnests"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121970113693-dj0irfp9522sfnk8lh37936506nanmn4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.customer.airnests",
+            "certificate_hash": "dbce89167d7ba5af140d579392ed935eb18479d2"
+          }
+        },
+        {
+          "client_id": "121970113693-n6au9k87nbmo9qbpgm9aoddpopcjabrs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE--XsDngOK9kzvYvJzQwjW-5coyLa6sY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121970113693-n6au9k87nbmo9qbpgm9aoddpopcjabrs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "121970113693-gvvgsft4ks3f7s9o2235teeld3m157dh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.airnestsApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>121970113693-3t4e0nsgj7gtp6daqqrlvor82rh55lv5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.121970113693-3t4e0nsgj7gtp6daqqrlvor82rh55lv5</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>121970113693-dj0irfp9522sfnk8lh37936506nanmn4.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC7m349251qflDsVIBOUfKYObazY66G2H8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>121970113693</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.powermaid.airnest</string>
+	<key>PROJECT_ID</key>
+	<string>airnests-app-39a0a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>airnests-app-39a0a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:121970113693:ios:b33688a584c6816eb42874</string>
+</dict>
+</plist>
