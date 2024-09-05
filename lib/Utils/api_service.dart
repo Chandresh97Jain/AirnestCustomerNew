@@ -13,12 +13,12 @@ class ApiService {
   static late final BuildContext context;
 
   /// Airnest Local server
-  static const baseURL = 'https://airnests.manageprojects.in/api/';
-  static const imageURL = 'https://airnests.manageprojects.in/';
+  // static const baseURL = 'https://airnests.manageprojects.in/api/';
+  // static const imageURL = 'https://airnests.manageprojects.in/';
 
   /// Airnest live server
-  // static const baseURL = 'https://admin.airnests.com/api/';
-  // static const imageURL = 'https://admin.airnests.com/';
+  static const baseURL = 'https://admin.airnests.com/api/';
+  static const imageURL = 'https://admin.airnests.com/';
 
   static const String signUp = "auth/signUp";
   static const String signIn = "auth/signIn";

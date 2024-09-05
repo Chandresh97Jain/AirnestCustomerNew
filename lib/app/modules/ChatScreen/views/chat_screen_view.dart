@@ -85,7 +85,7 @@ class ChatScreenView extends GetView<ChatScreenController> {
                   children: [
                     IconButton(
                         onPressed: controller.chatService.isRemoteBlock.value == true
-                            ?(){ Fluttertoast.showToast(msg: 'You cannot send a message because you are blocked!');}
+                            ?(){ ToastClass.showToast('You cannot send a message because you are blocked!');}
                             :() {
                           var data = {
                             'remote_user_id': controller.remoteUserId.value,
@@ -95,7 +95,7 @@ class ChatScreenView extends GetView<ChatScreenController> {
                           if(!controller.chatService.isBlockedUser.value){
                             Get.toNamed(Routes.AUDIO_CALL,parameters: data);
                           }else{
-                            Fluttertoast.showToast(msg: 'You cannot send a message because you have blocked this user.');
+                            ToastClass.showToast('You cannot send a message because you have blocked this user.');
                           }
                         },
                         icon: const Icon(Icons.call)
@@ -108,7 +108,7 @@ class ChatScreenView extends GetView<ChatScreenController> {
                         ),
                     IconButton(
                         onPressed: controller.chatService.isRemoteBlock.value == true
-                            ?(){ Fluttertoast.showToast(msg: 'You cannot send a message because you are blocked!');}
+                            ?(){ToastClass.showToast('You cannot send a message because you are blocked!');}
                             :() {
                           var data = {
                             'remote_user_id': controller.remoteUserId.value,
@@ -117,7 +117,7 @@ class ChatScreenView extends GetView<ChatScreenController> {
                           if(!controller.chatService.isBlockedUser.value){
                             Get.toNamed(Routes.VIDEO_CALL,parameters: data);
                           }else{
-                            Fluttertoast.showToast(msg: 'You cannot send a message because you have blocked this user.');
+                            ToastClass.showToast('You cannot send a message because you have blocked this user');
                           }
                         },
                         icon: Image.asset(
@@ -392,7 +392,7 @@ class ChatScreenView extends GetView<ChatScreenController> {
                           prefixIcon: IconButton(
                               onPressed: () {
                                 if(controller.chatService.isRemoteBlock.value == true){
-                                  Fluttertoast.showToast(msg: 'You cannot send a message because you are blocked!');
+                                  ToastClass.showToast('You cannot send a message because you are blocked!');
                                 }else{
                                   controller.chatService.pickImage();
                                 }
@@ -434,12 +434,12 @@ class ChatScreenView extends GetView<ChatScreenController> {
                                       log("Image array -- $imageUrls");
 
                                       if(controller.chatService.isRemoteBlock.value == true){
-                                        Fluttertoast.showToast(msg: 'You cannot send a message because you are blocked!');
+                                        ToastClass.showToast("You cannot send a message because you are blocked!");
                                       }else{
                                         if (messageText.isEmpty && imageUrls.isEmpty) {
                                           ToastClass.showToast("Please write a message ...");
                                         } else if (phoneRegex.hasMatch(messageText) || emailRegex.hasMatch(messageText)) {
-                                          Fluttertoast.showToast(msg: 'Sending personal information or taking cash is a violation and the profile will be removed');
+                                          ToastClass.showToast("Sending personal information or taking cash is a violation and the profile will be removed.");
                                           controller.vibrate();
                                           // ToastClass.showToast("Sending personal information or taking cash is a violation and the profile will be removed");
                                         } else {

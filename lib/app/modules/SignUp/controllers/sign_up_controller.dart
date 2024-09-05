@@ -529,7 +529,7 @@ class SignUpController extends GetxController {
        // Call your API with the retrieved user information
        socialSignUpApi( "apple",
            credential.userIdentifier,
-           userCredential.user!.email,
+           userCredential.user!.email??"",
            firstName ??"",
            lastName??"",
            ""

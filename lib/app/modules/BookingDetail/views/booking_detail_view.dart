@@ -242,42 +242,42 @@ class BookingDetailView extends GetView<BookingDetailController> {
                               height: 10,
                             ),
 
-                            Textwidget(
-                              text: "Paid By Card",
-                              fontWeight: FontWeight.w700,
-                              fontSize: 15.5,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Flexible(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Textwidget(
-                                        text: "Bank of name",
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                      Textwidget(
-                                        text: controller
-                                            .bookingSummary['card_number'],
-                                        color: AppStyles.GrayTextColor,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Image.asset(
-                                  "assets/images/mastercard.png",
-                                  scale: 2.5,
-                                )
-                              ],
-                            ),
+                            // Textwidget(
+                            //   text: "Paid By Card",
+                            //   fontWeight: FontWeight.w700,
+                            //   fontSize: 15.5,
+                            // ),
+                            // const SizedBox(
+                            //   height: 10,
+                            // ),
+                            //
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     Flexible(
+                            //       child: Column(
+                            //         crossAxisAlignment:
+                            //             CrossAxisAlignment.start,
+                            //         children: [
+                            //           Textwidget(
+                            //             text: "Bank of name",
+                            //             fontSize: 15,
+                            //             fontWeight: FontWeight.w700,
+                            //           ),
+                            //           Textwidget(
+                            //             text: controller
+                            //                 .bookingSummary['card_number'],
+                            //             color: AppStyles.GrayTextColor,
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //     Image.asset(
+                            //       "assets/images/mastercard.png",
+                            //       scale: 2.5,
+                            //     )
+                            //   ],
+                            // ),
 
                             const SizedBox(
                               height: 30,

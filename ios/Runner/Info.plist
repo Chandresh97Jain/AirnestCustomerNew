@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>power_maids</string>
+	<string>Airnests</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -31,13 +31,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires access to the camera to capture photos and videos.</string>
+	<string>This app requires access to the camera to capture photos for your profile picture images.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs access to your location to show your position on the map.</string>
+	<string>Your location is used to find cleaners and co-hosts near you to provide you with competitive pricing.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to your location to show your position on the map.</string>
+	<string>Your location is used to find cleaners and co-hosts near you to provide you with competitive pricing.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your message to user when requesting location access</string>
+	<string>Your location is used to find cleaners and co-hosts near you to provide you with competitive pricing.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app requires access to the microphone to record audio.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -68,36 +68,40 @@
 	</array>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
-    	<key>CFBundleURLTypes</key>
-        <array>
-          <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-              <string>fb381789444351896</string>
-              <string>com.googleusercontent.apps.121970113693-3t4e0nsgj7gtp6daqqrlvor82rh55lv5</string>
-            </array>
-          </dict>
-        </array>
-        <key>FacebookAppID</key>
-        <string>381789444351896</string>
-        <key>FacebookDisplayName</key>
-        <string>Airnest App</string>
-        <key>LSApplicationQueriesSchemes</key>
-        <array>
-          <string>fbapi</string>
-          <string>fb-messenger-share-api</string>
-          <string>fbauth2</string>
-          <string>fbshareextension</string>
-        </array>
-        <key>FirebaseAppDelegateProxyEnabled</key>
-        <false/>
-        <key>FacebookAdvertiserIDCollectionEnabled</key>
-        <true/>
-        <key>NSCameraUsageDescription</key>
-        <string>Scan your card to add it automatically</string>
-        <key>NSCameraUsageDescription
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb381789444351896</string>
+				<string>com.googleusercontent.apps.121970113693-3t4e0nsgj7gtp6daqqrlvor82rh55lv5</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>381789444351896</string>
+	<key>FacebookDisplayName</key>
+	<string>Airnest App</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<true/>
+	<key>NSCameraUsageDescription
         &lt;string&gt;To scan cards&lt;/string&gt;</key>
-        <string>To scan cards</string>
-
+	<string>To scan cards</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to upload photos for creating posts.</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.yourCompanyName.appName1</string>
+		<string>com.yourCompanyName.appName2</string>
+	</array>
 </dict>
 </plist>

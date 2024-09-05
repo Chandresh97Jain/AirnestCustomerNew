@@ -30,6 +30,9 @@ class EditProfileController extends GetxController {
 
   final count = 0.obs;
   final dialCode = ''.obs;
+  final firebase_id = ''.obs;
+  final lat = ''.obs;
+  final lng = ''.obs;
   final isLoading = false.obs;
   final dashBtn = false.obs;
   final isLoadingAccountDelete = false.obs;
@@ -88,8 +91,8 @@ class EditProfileController extends GetxController {
   Future<void> pickImageFromCamera(context) async {
     XFile? pickedFile = await picker.pickImage(
       source: ImageSource.camera,
-      maxWidth: 1800,
-      maxHeight: 1800,
+      // maxWidth: 1800,
+      // maxHeight: 1800,
     );
     // final croppedFilee = await ImageCropper().cropImage(
     //   sourcePath: pickedFile!.path,
@@ -234,46 +237,38 @@ class EditProfileController extends GetxController {
     googleMapService.longitude.value = prefs.getString('lng')!;
     memberSince.value = prefs.getString('member_since')!;
     dialCode.value = prefs.getString('dialCode')!;
+    firebase_id.value = prefs.getString('firebase_user_id')!;
+    lat.value = prefs.getString('lat')!;
+    lng.value = prefs.getString('lng')!;
 
-    log("dialCode.value -- ${dialCode.value.toString()}");
+    log("firebase_id -- ${firebase_id.value}");
 
     // numberController.text =  mobile;
   }
 
-  // void updateFields(Map<String, dynamic> fieldsToUpdate) {
-  //   String uid = FirebaseAuth.instance.currentUser!.uid;
-  //
-  //   FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(uid)
-  //       .update(fieldsToUpdate)
-  //       .then((_) {
-  //     log("Fields updated successfully.... ");
-  //   }).catchError((error) {
-  //     log("Failed to update fields: $error");
-  //   });
-  // }
 
 
   void updateFields(Map<String, dynamic> fieldsToUpdate) {
-    User? user = FirebaseAuth.instance.currentUser;
+    // User? user = FirebaseAuth.instance.currentUser;
 
-    if (user != null) {
-      String uid = user.uid;
+    String uid = firebase_id.value;
 
-      FirebaseFirestore.instance
-          .collection('users')
-          .doc(uid)
-          .update(fieldsToUpdate)
-          .then((_) {
-        log("Fields updated successfully.... ");
-      }).catchError((error) {
-        log("Failed to update fields: $error");
-      });
-    } else {
-      log("No user is currently signed in.");
-      // Handle the scenario when there is no signed-in user.
-    }
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .update(fieldsToUpdate)
+        .then((_) {
+      log("Fields updated successfully.... ");
+    }).catchError((error) {
+      log("Failed to update fields: $error");
+    });
+
+    // if (user != null) {
+    //
+    // } else {
+    //   log("No user is currently signed in.");
+    //   // Handle the scenario when there is no signed-in user.
+    // }
   }
 
 
@@ -286,8 +281,8 @@ class EditProfileController extends GetxController {
         numberController.value.text,
         selectedImage.value.path,
         googleMapService.addressController.value.text,
-        googleMapService.latitude.toString(),
-        googleMapService.longitude.toString(),
+        googleMapService.latitude.toString() ?? lat.value,
+        googleMapService.longitude.toString() ?? lng.value,
       );
 
       if (response['status'] == true) {
@@ -310,7 +305,7 @@ class EditProfileController extends GetxController {
           'first_name': firstnameController.value.text,
           'last_name': lastnameController.value.text,
           // 'profile': profileNetwork.value.toString(),
-          'profile': profileNetwork.value,
+          'profile': profileNetwork.value.toString(),
         };
 
         log("Edit profile -------- ${profileNetwork.value}");
@@ -370,81 +365,6 @@ class EditProfileController extends GetxController {
       isLoading(false);
     }
   }
-
-  // Update_Profile_WithoutImage_Api() async {
-  //   // final prefs = await SharedPreferences.getInstance();
-  //   // var devicetype = prefs.getString('device_type');
-  //   // var device_token = prefs.getString('device_token');
-  //
-  //   // print("device_token ========= ${device_token}");
-  //
-  //   try {
-  //     isLoading(true);
-  //
-  //     var response = await ApiService()
-  //         .Update_Profile(firstnameController.text,lastnameController.text,numberController.text);
-  //
-  //     if (response['status'] == true) {
-  //
-  //       userData.remove('firstname');
-  //       userData.remove('lastname');
-  //       userData.remove('mobile');
-  //       userData.remove('image');
-  //
-  //       print("firstname --- ${firstnameController.text}");
-  //       print("lastname --- ${lastnameController.text}");
-  //       print("mobile --- ${numberController.text}");
-  //       print("image --- ${selectedImage.value.path}");
-  //
-  //
-  //         userData.write('firstname',firstnameController.text);
-  //         userData.write('lastname',lastnameController.text);
-  //         userData.write('mobile',numberController.text);
-  //         userData.write('image',selectedImage.value.path);
-  //
-  //
-  //
-  //       update();
-  //
-  //       print("firstname --- ${firstname}");
-  //       print("lastname --- ${lastname}");
-  //       print("mobile --- ${mobile}");
-  //       print("image --- $image");
-  //
-  //       ToastClass.showToast('${response['message']}',);
-  //
-  //       final prefs = await SharedPreferences.getInstance();
-  //
-  //       // var data = {
-  //       //   'number':phoneTextController.text,
-  //       //   'otp':"1234"
-  //       // };
-  //
-  //       Get.offAllNamed(Routes.DESHBOARD);
-  //
-  //       // print("opt --------- ${response['data']['otp'].toString()}");
-  //
-  //       // var data = {
-  //       //   "MobileNumber": Mobile_Number_controller.text,
-  //       //   "otp" : response['data']['otp'].toString(),
-  //       //   "contact_support" : contact_support.value,
-  //       // };
-  //       // Get.offAllNamed(Routes.OTP_SCREEN, parameters: data);
-  //
-  //       isLoading(false);
-  //
-  //
-  //     } else if (response['status'] == false) {
-  //       ToastClass.showToast('${response['message']}',);
-  //       isLoading(false);
-  //     }
-  //
-  //   } finally {
-  //
-  //     isLoading(false);
-  //
-  //   }
-  // }
 
   @override
   void onReady() {

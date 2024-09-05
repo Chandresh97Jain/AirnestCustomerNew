@@ -214,14 +214,14 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                     thickness: 1,
                     color: AppStyles.deviderColor,
                   ),
-                  ProfileUI(
-                    iconColor: AppStyles.appThemeColor,
-                    iconImages: 'assets/icons/chatbooticon.png',
-                    title: 'Chat Bot',
-                    onPressed: () {
-                      Get.toNamed(Routes.CHAT_BOD_SCREEN);
-                    },
-                  ),
+                  // ProfileUI(
+                  //   iconColor: AppStyles.appThemeColor,
+                  //   iconImages: 'assets/icons/chatbooticon.png',
+                  //   title: 'Chat Bot',
+                  //   onPressed: () {
+                  //     Get.toNamed(Routes.CHAT_BOD_SCREEN);
+                  //   },
+                  // ),
                   Divider(
                     endIndent: 18,
                     indent: 18,

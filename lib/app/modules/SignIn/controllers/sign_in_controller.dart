@@ -403,7 +403,7 @@ class SignInController extends GetxController {
       // Call your API with the retrieved user information
       socialSignInApi( "apple",
           credential.userIdentifier,
-          userCredential.user!.email,
+          userCredential.user!.email??"",
           firstName ??"",
           lastName??"",
           ""
