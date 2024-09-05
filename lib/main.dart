@@ -65,8 +65,6 @@ class MyApp extends StatelessWidget {
       offline: FullScreenWidget( child: ConnectivityScreenView()),
 
 
-
-
       online: GetMaterialApp(
         //  initialBinding: ControllerBinding(),
         debugShowCheckedModeBanner: false,
