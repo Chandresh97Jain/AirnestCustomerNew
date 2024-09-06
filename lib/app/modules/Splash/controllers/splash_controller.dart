@@ -43,7 +43,7 @@ class SplashController extends GetxController {
     if (!_serviceEnabled) {
       log("_serviceEnabled  -- $_serviceEnabled");
       _serviceEnabled = await location.requestService();
-      Future.delayed(  const Duration(seconds: 3), navigateUser);
+      // Future.delayed(  const Duration(seconds: 2), navigateUser);
       // Check if location permissions are granted
       _permissionGranted = await location.hasPermission();
       if (_permissionGranted == PermissionStatus.denied) {
@@ -53,45 +53,44 @@ class SplashController extends GetxController {
           exit(0);
         }
       }else{
-        Future.delayed( const Duration(seconds: 3), navigateUser);
+        Future.delayed( const Duration(seconds: 1), navigateUser);
       }
       if (!_serviceEnabled) {
         ToastClass.showToast("Please enable location service to continue!");
         exit(0);
       }
     }else{
-      Future.delayed( const Duration(seconds: 3), navigateUser);
+      Future.delayed( const Duration(seconds: 1), navigateUser);
     }
   }
 
   void navigateUser() async {
-    Future.delayed(const Duration(seconds: 3)).then((value) async {
-      final prefs = await SharedPreferences.getInstance();
-      var userId = prefs.getString('userID');
-      var authToken = prefs.getString('auth_token');
 
-      log("authToken ------  -- -  - - ${authToken.toString()}");
-      if(authToken == null){
-        Get.offAllNamed(Routes.WELLCOME_SCREEN);
-      }else{
-        Get.offAllNamed(Routes.DESHBOARD);
-      }
+    final prefs = await SharedPreferences.getInstance();
+    var userId = prefs.getString('userID');
+    var authToken = prefs.getString('auth_token');
+
+    log("authToken ------  -- -  - - ${authToken.toString()}");
+    if(authToken == null){
+      Get.offAllNamed(Routes.WELLCOME_SCREEN);
+    }else{
+      Get.offAllNamed(Routes.DESHBOARD);
     }
-    );
 
-
-   // Get.offAllNamed(Routes.SIGN_IN);
-   //  Get.offAllNamed(Routes.WELLCOME_SCREEN);
-
-
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // var loginstatus=prefs.getString('loginstatus');
-    // String status = SharedPreferencesUtils.getString(SDConstant.token).toString();
-    // print("status"+status);
+    // Future.delayed(const Duration(seconds: 2)).then((value) async {
+    //   final prefs = await SharedPreferences.getInstance();
+    //   var userId = prefs.getString('userID');
+    //   var authToken = prefs.getString('auth_token');
     //
-    // loginstatus=="true"
-    //     ? Get.offAllNamed(Routes.DESHBOARD)
-    //     : Get.offAllNamed(Routes.LOGIN);
+    //   log("authToken ------  -- -  - - ${authToken.toString()}");
+    //   if(authToken == null){
+    //     Get.offAllNamed(Routes.WELLCOME_SCREEN);
+    //   }else{
+    //     Get.offAllNamed(Routes.DESHBOARD);
+    //   }
+    // }
+    // );
+
   }
 
 }
