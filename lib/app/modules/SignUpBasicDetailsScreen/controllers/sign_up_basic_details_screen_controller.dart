@@ -23,8 +23,10 @@ class SignUpBasicDetailsScreenController extends GetxController {
 
   }
 
+  List<bool> isSelected = [true, false].obs;
 
   final authToken = ''.obs;
+  final name = ''.obs;
   final userId = ''.obs;
 
 
@@ -32,6 +34,7 @@ class SignUpBasicDetailsScreenController extends GetxController {
   void onInit() {
     // user_id.value = Get.parameters['user_id']!;
     authToken.value = Get.parameters['auth_token']!;
+    name.value = Get.parameters['first_name']!;
     super.onInit();
   }
 
@@ -41,7 +44,7 @@ class SignUpBasicDetailsScreenController extends GetxController {
 
       var response = await ApiService().signUpBasicDetails(
         authToken.value,
-        goalcontroller.text,
+        isSelected[0] ? 'Cleaning Services' : 'Property Management',
         propertycontroller.text,
         pmsController.text,
       );

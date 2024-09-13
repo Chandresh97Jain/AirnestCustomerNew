@@ -11,12 +11,12 @@ class WellcomeScreenController extends GetxController {
     'title': [
       'Welcome to Airnests',
       'Easy Track Order',
-      'Door to Door Support',
+      'Have multiple properties?',
     ],
     'desc': [
-      'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.',
-      'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.',
-      'Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.'
+      'Looking for a cleaner or a co-host at an affordable price? Use our app to create a bid for several cleaners near you.  Accept the one that makes sense to you.',
+      'After you book one of the cleaner or co-host, easily track progress of the work live on the day of service.',
+      'Easily manage multiple properties and favorite cleaners in just a few clicks using our app.'
     ],
   };
 

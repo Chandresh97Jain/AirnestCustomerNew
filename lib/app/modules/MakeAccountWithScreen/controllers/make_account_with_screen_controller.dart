@@ -17,19 +17,19 @@ class MakeAccountWithScreenController extends GetxController {
       "assets/icons/addIcon.png"],
 
     "title":[
-      "Search a new cleaners",
-      "Search Co-host",
+      "Search a new cleaner",
+      "Search a new Co-host",
       "Create a bid & Find the best\ncleaner and co-host"
     ],
 
     "discription":[
-      "Join Airnests and connect with new cleaners.",
-      "Join Airnests and connect with co-host cleaners",
-      "Create a project and find best cleaners"
+      "Find cleaners near your service location.",
+      "Find co-host near your service location.",
+      "Create a project and find best cleaners or co-hosts."
     ],
 
     "nextScreendis":[
-      "How would you like a continue?",
+      "What best describes your cleaning needs?",
       "What do you want your co-host to manage?",
       "What type of cleaning do you need?"
     ]

@@ -94,7 +94,7 @@ class SignUpVerifyOtpController extends GetxController {
 
         if(response['data']['role'] == 0){
           var data = {
-            // 'user_id':response['data']['id'].toString(),
+            'first_name':firstName.value,
             'auth_token':authToken.value??'',
           };
           Get.toNamed(Routes.SIGN_UP_BASIC_DETAILS_SCREEN,parameters: data);

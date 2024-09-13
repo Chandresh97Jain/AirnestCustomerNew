@@ -33,7 +33,7 @@ class EditProfileView extends GetView<EditProfileController> {
             backgroundColor: AppStyles.backgroundColor,
             title: AppbarWithBackButton(
               text:
-                  controller.dashBtn.value == true ? 'Profile' : 'Edit Profile',
+                  controller.dashBtn.value == true ? 'Create Profile' : 'Edit Profile',
               onPressed: () {
                 Get.back(result: true);
               },

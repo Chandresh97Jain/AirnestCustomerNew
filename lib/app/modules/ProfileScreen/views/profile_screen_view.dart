@@ -187,7 +187,7 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                   ProfileUI(
                     iconColor: AppStyles.appThemeColor,
                     iconImages: 'assets/icons/unlike.png',
-                    title: 'My Favourite',
+                    title: 'My Favorite',
                     onPressed: () {
                       Get.toNamed(Routes.MY_FAVOURITE);
                     },

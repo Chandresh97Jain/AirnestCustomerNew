@@ -87,7 +87,7 @@ class WellcomeScreenView extends GetView<WellcomeScreenController> {
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height / 8,
+                            height: MediaQuery.of(context).size.height / 10,
                           ),
 
                           MyButton(

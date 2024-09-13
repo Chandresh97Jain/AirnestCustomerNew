@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:power_maids/Utils/button_ui_global.dart';
 import 'package:power_maids/Utils/color_style.dart';
 import 'package:power_maids/Utils/global_text.dart';
@@ -37,13 +40,13 @@ class SignUpBasicDetailsScreenView
                             height: MediaQuery.of(context).size.height / 15,
                           ),
                           Textwidget(
-                            text: "Welcome John",
+                            text: "Welcome ${"Jaydeep"}",
                             fontWeight: FontWeight.w700,
                             fontSize: 25,
                             color: AppStyles.appThemeColor,
                           ),
                           Textwidget(
-                            text: "Enter Basic Detail",
+                            text: "Enter Basic Details",
                             fontWeight: FontWeight.w400,
                             fontSize: 18,
                           )
@@ -75,17 +78,39 @@ class SignUpBasicDetailsScreenView
                               const SizedBox(
                                 height: 10,
                               ),
-                              TextFieldDesigned(
-                                controller: controller.goalcontroller,
-                                maxLength: 40,
-                                keyboardType: TextInputType.text,
+
+                              ToggleButtons(
+                                borderColor: AppStyles.appThemeColor, // Border color of buttons
+                                selectedBorderColor: AppStyles.appThemeColor, // Border color when selected
+                                selectedColor: Colors.white, // Text color when selected
+                                fillColor: AppStyles.appThemeColor, // Background color when selected
+                                color: AppStyles.appThemeColor, // Text color when not selected
+                                borderRadius: BorderRadius.circular(10),
+                                isSelected: controller.isSelected,
+                                onPressed: (int index) {
+                                    // Toggle selection
+                                    for (int i = 0; i < controller.isSelected.length; i++) {
+                                      controller.isSelected[i] = i == index; // Select the pressed button
+                                    }
+                                }, // Border radius for buttons
+                                children: const <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                    child: Text('Cleaning Services'),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                    child: Text('Property Management'),
+                                  ),
+                                ],
                               ),
+
                               const SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
                               Textwidget(
                                 maxLines: 5,
-                                text: "How many properties do you manage?",
+                                text: "How many properties require service today?",
                                 color: AppStyles.BlacklightTextcolor,
                               ),
                               const SizedBox(
@@ -97,11 +122,11 @@ class SignUpBasicDetailsScreenView
                                 keyboardType: TextInputType.number,
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
                               Textwidget(
                                 maxLines: 5,
-                                text: "Do you work with a PMS*?",
+                                text: "Do you currently work with a property management service provider?",
                                 color: AppStyles.BlacklightTextcolor,
                               ),
                               const SizedBox(
@@ -116,27 +141,12 @@ class SignUpBasicDetailsScreenView
                                 height: 30,
                               ),
                               MyButton(
+
                                 text: "Continue",
                                 onPressed: () {
                                   // Future.delayed(const Duration(seconds: 3),
                                   //     controller.navigateUser);
-
-                                  if (controller.goalcontroller.text.isEmpty) {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      duration: const Duration(seconds: 1),
-                                      dismissDirection:
-                                          DismissDirection.horizontal,
-                                      backgroundColor: AppStyles.appThemeColor,
-                                      content: Center(
-                                          child: Textwidget(
-                                        text:
-                                            "Please enter your main goal for joining Airnest",
-                                        color: Colors.white,
-                                      )),
-                                    ));
-                                  } else if (controller
-                                      .propertycontroller.text.isEmpty) {
+                               if (controller.propertycontroller.text.isEmpty) {
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
                                       duration: const Duration(seconds: 1),
@@ -150,8 +160,7 @@ class SignUpBasicDetailsScreenView
                                         color: Colors.white,
                                       )),
                                     ));
-                                  } else if (controller
-                                      .pmsController.text.isEmpty) {
+                                  } else if (controller.pmsController.text.isEmpty) {
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
                                       duration: const Duration(seconds: 1),

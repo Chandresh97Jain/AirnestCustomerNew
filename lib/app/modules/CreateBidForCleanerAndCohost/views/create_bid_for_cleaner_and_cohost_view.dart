@@ -130,7 +130,8 @@ class CreateBidForCleanerAndCohostView
                   Textwidget(
                     maxLines: 5,
                     fontWeight: FontWeight.w700,
-                    text: "What type of cleaning do you need?",
+                    text: controller.selectedBid.value == 0 ?"What type of cleaning do you "
+                        "need?":"Property Management",
                   ),
                   const SizedBox(
                     height: 5,
