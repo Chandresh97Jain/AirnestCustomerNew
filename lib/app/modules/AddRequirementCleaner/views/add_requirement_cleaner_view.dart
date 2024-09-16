@@ -1421,7 +1421,7 @@ class AddRequirementCleanerView
                           for(int i=0;i<controller.weeklyListH.length;i++)
                             Obx(() => Padding(
                               padding: const EdgeInsets.only(
-                                  left: 10, right: 10, top: 5),
+                                  left: 5, right: 10, top: 5),
                               child: Row(
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,

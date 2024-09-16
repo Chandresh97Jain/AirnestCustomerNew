@@ -83,11 +83,6 @@ class ApiService {
 
 
 
-
-
-
-
-
   Future signUpApi(loginType,firstname,lastname,email,password,mobile,deviceId,address,latitude,longitude) async {
 
     final response = await http.post(Uri.parse(baseURL + signUp),

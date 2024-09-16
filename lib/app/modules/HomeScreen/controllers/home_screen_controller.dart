@@ -282,8 +282,6 @@ class HomeScreenController extends GetxController {
 
 
 
-
-
   final nearByMaid = <NearByListModel>[].obs;
   Future nearByMaidApi() async {
     nearByMaid.clear();
