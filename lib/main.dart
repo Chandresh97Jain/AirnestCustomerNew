@@ -39,8 +39,8 @@ void main() async {
   // await PushNotificationService().init();
  await requestNotificationPermissions();
 
-  // Stripe.publishableKey = "pk_test_51LMds6GVpTf9ozAW3QSiODUgfZidpwBAW4j87XLUEnxufm7Acd72AVA7qvxWadL8NWtBlbbXgZhh7OIhBz1Aw1kE00zKYuijEz";
-  Stripe.publishableKey = "pk_live_51LMds6GVpTf9ozAWGOUgoO6k3f0hKrvYSm9cNgTZ1J4hQsPE3mtpc3PWHpnAkXrYqLTZcwfWKJnsErqTWYCSftlk00KJsZ3rCK";
+  Stripe.publishableKey = "pk_test_51LMds6GVpTf9ozAW3QSiODUgfZidpwBAW4j87XLUEnxufm7Acd72AVA7qvxWadL8NWtBlbbXgZhh7OIhBz1Aw1kE00zKYuijEz";
+  // Stripe.publishableKey = "pk_live_51LMds6GVpTf9ozAWGOUgoO6k3f0hKrvYSm9cNgTZ1J4hQsPE3mtpc3PWHpnAkXrYqLTZcwfWKJnsErqTWYCSftlk00KJsZ3rCK";
   await dotenv.load(fileName: "assets/.env");
   runApp(const MyApp());
 }
