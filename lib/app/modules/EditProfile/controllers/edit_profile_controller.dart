@@ -85,6 +85,9 @@ class EditProfileController extends GetxController {
     if (pickedFile != null) {
       selectedImage.value = File(pickedFile.path);
       profileNetwork.value = selectedImage.value.path;
+
+      log("profileNetwork.value =======>?>>>>>>>>>>> ${profileNetwork.value.toString()}");
+      log("selectedImage.value =======>?>>>>>>>>>>> ${selectedImage.value.toString()}");
     }
   }
 
@@ -131,7 +134,8 @@ class EditProfileController extends GetxController {
       selectedImage.value = File(pickedFile.path);
       profileNetwork.value = selectedImage.value.path;
 
-      log("croppedImage.path =======>?>>>>>>>>>>> ${selectedImage.value.toString()}");
+      log("profileNetwork.value =======>?>>>>>>>>>>> ${profileNetwork.value.toString()}");
+      log("selectedImage.value =======>?>>>>>>>>>>> ${selectedImage.value.toString()}");
     }
   }
 
@@ -201,6 +205,12 @@ class EditProfileController extends GetxController {
         userData.write('image',response['data']['image']);
         userData.write('role',response['data']['role']);
 
+        String  image = response['data']['image'] ?? "";
+        String  uid = response['data']['firebase_id']??"";
+        Map<String, dynamic> fieldsToUpdate = {
+          'profile': image,
+        };
+        FirebaseFirestore.instance.collection('users').doc(uid).update(fieldsToUpdate);
 
         update();
 
@@ -299,8 +309,6 @@ class EditProfileController extends GetxController {
         prefs.setString('lng', googleMapService.longitude.value.toString());
         prefs.setString('dialCode', dialCode.value);
 
-
-
         Map<String, dynamic> fieldsToUpdate = {
           'first_name': firstnameController.value.text,
           'last_name': lastnameController.value.text,
@@ -309,7 +317,6 @@ class EditProfileController extends GetxController {
         };
 
         log("Edit profile -------- ${profileNetwork.value}");
-
         getProfile();
         retriveData();
 

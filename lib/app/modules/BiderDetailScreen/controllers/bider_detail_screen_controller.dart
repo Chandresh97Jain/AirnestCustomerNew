@@ -77,8 +77,8 @@ class BiderDetailScreenController extends GetxController {
 
     double adminFee = (admin_fees / 100) * service_price;
     double total = service_price+adminFee;
-    totalPlatformFee.value = adminFee.toString();
 
+    totalPlatformFee.value = adminFee.toString();
     totalPrice.value = total.toString();
   }
 

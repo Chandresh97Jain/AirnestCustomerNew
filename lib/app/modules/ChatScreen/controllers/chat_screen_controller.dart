@@ -144,7 +144,7 @@ class ChatScreenController extends GetxController {
   DateTime? lastSeenTimestamp = await chatService.getLastSeenTimestamp(otherUserID.value);
   lastSeen.value = lastSeenTimestamp.toString();
   try {
-   String uid = FirebaseAuth.instance.currentUser!.uid;
+   String uid = currentUserID.value;
    DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
    currentUserFName.value = userDoc['first_name'];
    currentUserLName.value = userDoc['last_name'];
@@ -159,7 +159,7 @@ class ChatScreenController extends GetxController {
  }
 
  void addNewField(Map<String, dynamic> newField) {
- String uid = FirebaseAuth.instance.currentUser!.uid;
+ String uid = currentUserID.value;
  FirebaseFirestore.instance.collection('users').doc(uid).update(newField).then((_) {
    log("Field added successfully");
   }).catchError((error) {

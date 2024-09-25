@@ -4,10 +4,14 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:googleapis_auth/auth.dart';
+import 'package:googleapis_auth/auth_io.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -109,9 +113,8 @@ class ChatServiceCustomer {
       print("Chat ----- fcmToken - ${receiverToken}");
 
       if (receiverToken != null) {
-        // Send a notification using the FCM token
-        await sendPushNotification(receiverToken, senderName, message);
-        // await PushNotificationnn().init();
+        await sendPushNotificationWithOAuth(receiverToken, senderName, message);
+
       }
 
       scrollToBottom(scrollController);
@@ -122,32 +125,92 @@ class ChatServiceCustomer {
     }
   }
 
-  Future<void> sendPushNotification(String token, String senderName, String message) async {
-    try {
-      String serverKey = 'AAAAHGX8PJ0:APA91bG3hNSxdiW7vnO_997HggH34FvCAeqMEKriBKVINGzGY7ot_6NcXJVR4LmrLBOu0ZgjT4uUNuwkU21KGBEWB7VAABga_u0Zfwg_hd3NRLd8uyhi_mf5PoQW7pHEXRDN0Z-ltTqP'; // Replace with your FCM server key
+  Future<String> getFirebaseOAuthToken() async {
+    try{
+      // Load the service account JSON file
+      String jsonString = await rootBundle.loadString('assets/credentials/firebase_service_account.json');
+      final accountCredentials = ServiceAccountCredentials.fromJson(jsonDecode(jsonString));
 
-      await http.post(
-        Uri.parse('https://fcm.googleapis.com/fcm/send'),
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-          'Authorization': 'key=$serverKey',
-        },
-        body: jsonEncode({
-          'to': token,
-          'notification': {
-            'title': 'New Message from $senderName',
-            'body': message,
+      // Set the scope for Firebase Cloud Messaging
+      final scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
+
+      // Generate the OAuth token using the service account
+      final authClient = await clientViaServiceAccount(accountCredentials, scopes);
+
+      // Return the access token
+      return authClient.credentials.accessToken.data;
+    }catch(e){
+      print("---  error-- $e");
+      return '';
+    }
+  }
+
+
+  /// Function to send FCM push notification using the OAuth token
+  Future<void> sendPushNotificationWithOAuth(String fcmToken, String title, String body) async {
+    try {
+      // Get the OAuth token
+      String oauthToken = await getFirebaseOAuthToken();
+
+      print("---  oauthToken-- $oauthToken");
+      print("---  title-- $title");
+      // Set up Dio instance
+      Dio dio = Dio();
+
+      // Make the HTTP request to send the FCM notification using Dio
+      final response = await dio.post('https://fcm.googleapis.com/v1/projects/airnests-app-39a0a/messages:send', // Replace with your Firebase project ID
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $oauthToken',
           },
-          'data': {
-            'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-            'senderId': senderName,
+        ),
+        data: jsonEncode({
+          'message': {
+            'token': fcmToken,
+            'notification': {
+              'title': title,
+              'body': body,
+            },
+            'data': {
+              'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+            },
           },
         }),
       );
+
+      print('Push notification sent: ${response.statusCode}');
     } catch (e) {
       print('Error sending push notification: $e');
     }
   }
+
+  // Future<void> sendPushNotification(String token, String senderName, String message) async {
+  //   try {
+  //     String serverKey = 'AAAAHGX8PJ0:APA91bG3hNSxdiW7vnO_997HggH34FvCAeqMEKriBKVINGzGY7ot_6NcXJVR4LmrLBOu0ZgjT4uUNuwkU21KGBEWB7VAABga_u0Zfwg_hd3NRLd8uyhi_mf5PoQW7pHEXRDN0Z-ltTqP'; // Replace with your FCM server key
+  //
+  //     await http.post(
+  //       Uri.parse('https://fcm.googleapis.com/fcm/send'),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json',
+  //         'Authorization': 'key=$serverKey',
+  //       },
+  //       body: jsonEncode({
+  //         'to': token,
+  //         'notification': {
+  //           'title': 'New Message from $senderName',
+  //           'body': message,
+  //         },
+  //         'data': {
+  //           'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+  //           'senderId': senderName,
+  //         },
+  //       }),
+  //     );
+  //   } catch (e) {
+  //     print('Error sending push notification: $e');
+  //   }
+  // }
 
    createChatRoom(String user1Id, String user2Id,message) async {
     try {
