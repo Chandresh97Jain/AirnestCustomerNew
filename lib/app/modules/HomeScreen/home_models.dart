@@ -19,7 +19,8 @@ class NearByListModel {
   int role;
   String avatar;
   String firebaseId;
-  String address;
+  // String address;
+  String address2;
   String latitude;
   String longitude;
   String rating;
@@ -32,7 +33,8 @@ class NearByListModel {
     required this.role,
     required this.avatar,
     required this.firebaseId,
-    required this.address,
+    // required this.address,
+    required this.address2,
     required this.latitude,
     required this.longitude,
     required this.rating,
@@ -46,7 +48,8 @@ class NearByListModel {
     role: json["role"],
     avatar: json["avatar"],
     firebaseId: json["firebase_id"]??"",
-    address: json["address"],
+    // address: json["address"],
+    address2: json["address2"]??"",
     latitude: json["latitude"],
     longitude: json["longitude"],
     rating: json["rating"],
@@ -60,7 +63,8 @@ class NearByListModel {
     "role": role,
     "avatar": avatar,
     "firebase_id": firebaseId,
-    "address": address,
+    // "address": address,
+    "address2": address2,
     "latitude": latitude,
     "longitude": longitude,
     "rating": rating,
@@ -77,7 +81,8 @@ class RecommendedListModel {
   String avatar;
   String rating;
   String review;
-  String address;
+  // String address;
+  String address2;
   int isFavorite;
   String firebaseId;
 
@@ -88,7 +93,8 @@ class RecommendedListModel {
     required this.avatar,
     required this.rating,
     required this.review,
-    required this.address,
+    // required this.address,
+    required this.address2,
     required this.isFavorite,
     required this.firebaseId,
   });
@@ -100,7 +106,8 @@ class RecommendedListModel {
     avatar: json["avatar"],
     rating: json["rating"],
     review: json["review"],
-    address: json["address"]??"",
+    // address: json["address"]??"",
+    address2: json["address2"]??"",
     isFavorite: json["is_favorite"],
     firebaseId: json["firebase_id"]??'',
 
@@ -113,7 +120,8 @@ class RecommendedListModel {
     "avatar": avatar,
     "rating": rating,
     "review": review,
-    "address": address,
+    // "address": address,
+    "address2": address2,
     "is_favorite": isFavorite,
     "firebase_id": firebaseId,
   };
@@ -125,7 +133,8 @@ class FaviouriteListModel {
   String cleanerName;
   int role;
   String avatar;
-  String address;
+  // String address;
+  String address2;
   String rating;
   String review;
   int isFavorite;
@@ -136,7 +145,8 @@ class FaviouriteListModel {
     required this.cleanerName,
     required this.role,
     required this.avatar,
-    required this.address,
+    // required this.address,
+    required this.address2,
     required this.rating,
     required this.review,
     required this.isFavorite,
@@ -148,7 +158,8 @@ class FaviouriteListModel {
     cleanerName: json["cleaner_name"]??"",
     role: json["role"]??"",
     avatar: json["avatar"]??"",
-    address: json["address"]??"",
+    // address: json["address"]??"",
+    address2: json["address2"]??"",
     rating: json["rating"],
     review: json["review"],
     isFavorite: json["is_favorite"],
@@ -160,7 +171,8 @@ class FaviouriteListModel {
     "cleaner_name": cleanerName,
     "role": role,
     "avatar": avatar,
-    "address": address,
+    // "address": address,
+    "address2": address2,
     "rating": rating,
     "review": review,
     "is_favorite": isFavorite,

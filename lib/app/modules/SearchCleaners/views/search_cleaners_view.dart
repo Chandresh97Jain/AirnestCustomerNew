@@ -244,7 +244,7 @@ class SearchCleanersView extends GetView<SearchCleanersController> {
                                                 Visibility(
                                                   visible:
                                                   searchCleanerList
-                                                      .address
+                                                      .address2
                                                       .isNotEmpty,
                                                   child: Row(
                                                     crossAxisAlignment:
@@ -265,7 +265,7 @@ class SearchCleanersView extends GetView<SearchCleanersController> {
                                                           maxLines:
                                                           2,
                                                           text: searchCleanerList
-                                                              .address,
+                                                              .address2,
                                                         ),
                                                       )
                                                     ],

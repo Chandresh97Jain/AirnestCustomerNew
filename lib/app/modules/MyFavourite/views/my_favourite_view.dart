@@ -170,7 +170,7 @@ class MyFavouriteView extends GetView<MyFavouriteController> {
                                                     Flexible(
                                                       child: Textwidget(
                                                         maxLines: 2,
-                                                        text: favourite.address,
+                                                        text: favourite.address2,
                                                       ),
                                                     )
                                                   ],

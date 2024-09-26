@@ -12,7 +12,7 @@ class CleanerCoHostListModel {
   String username;
   String email;
   String mobile;
-  String address;
+  String address2;
   String avatar;
   String experience;
   String repeatClient;
@@ -29,7 +29,7 @@ class CleanerCoHostListModel {
     required this.username,
     required this.email,
     required this.mobile,
-    required this.address,
+    required this.address2,
     required this.avatar,
     required this.experience,
     required this.repeatClient,
@@ -47,7 +47,7 @@ class CleanerCoHostListModel {
     username: json["username"]??"",
     email: json["email"]??"",
     mobile: json["mobile"]??"",
-    address: json["address"]??"",
+    address2: json["address2"]??"",
     avatar: json["avatar"]??'',
     experience: json["experience"]??'',
     repeatClient: json["repeat_client"]??'',
@@ -65,7 +65,7 @@ class CleanerCoHostListModel {
     "username": username,
     "email": email,
     "mobile": mobile,
-    "address": address,
+    "address2": address2,
     "avatar": avatar,
     "experience": experience,
     "repeat_client": repeatClient,

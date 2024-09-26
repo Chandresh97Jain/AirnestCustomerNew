@@ -254,7 +254,7 @@ class LocationScreenView extends GetView<LocationScreenController> {
                                                       Expanded(
                                                         child: Textwidget(
                                                           text:
-                                                              nearMaids.address,
+                                                              nearMaids.address2,
                                                           // overflow: TextOverflow.ellipsis,
                                                           maxLines: 2,
                                                         ),

@@ -533,7 +533,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                                     ],
                                                   ),
                                                   Visibility(
-                                                    visible: recommendedList.address.isNotEmpty,
+                                                    visible: recommendedList.address2.isNotEmpty,
                                                     child: Row(
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
@@ -545,7 +545,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                                         Flexible(
                                                           child: Textwidget(
                                                             maxLines: 2,
-                                                            text: recommendedList.address,
+                                                            text: recommendedList.address2,
                                                           ),
                                                         ),
                                                       ],

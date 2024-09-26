@@ -197,7 +197,7 @@ class RecommendedViewAllView extends GetView<RecommendedViewAllController> {
                                                               Visibility(
                                                                 visible:
                                                                     recommendedList
-                                                                        .address
+                                                                        .address2
                                                                         .isNotEmpty,
                                                                 child: Row(
                                                                   crossAxisAlignment:
@@ -218,7 +218,7 @@ class RecommendedViewAllView extends GetView<RecommendedViewAllController> {
                                                                         maxLines:
                                                                             2,
                                                                         text: recommendedList
-                                                                            .address,
+                                                                            .address2,
                                                                       ),
                                                                     )
                                                                   ],

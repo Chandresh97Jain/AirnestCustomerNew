@@ -36,7 +36,7 @@ void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
  await FirebaseService().initializeFirebase();
-  // await PushNotificationService().init();
+  await PushNotificationService().init();
  await requestNotificationPermissions();
 
   Stripe.publishableKey = "pk_test_51LMds6GVpTf9ozAW3QSiODUgfZidpwBAW4j87XLUEnxufm7Acd72AVA7qvxWadL8NWtBlbbXgZhh7OIhBz1Aw1kE00zKYuijEz";

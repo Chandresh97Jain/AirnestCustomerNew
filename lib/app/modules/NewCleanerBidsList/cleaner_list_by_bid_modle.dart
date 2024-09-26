@@ -13,7 +13,7 @@ class CleanerListByBidModel {
   String serviceName;
   int propertyId;
   String propertyZipcode;
-  String address;
+  String address2;
   int cleanerRole;
   String cleanerAbout;
   String cleanerAddress;
@@ -39,7 +39,7 @@ class CleanerListByBidModel {
     required this.serviceName,
     required this.propertyId,
     required this.propertyZipcode,
-    required this.address,
+    required this.address2,
     required this.cleanerRole,
     required this.cleanerAbout,
     required this.cleanerAddress,
@@ -66,7 +66,7 @@ class CleanerListByBidModel {
     serviceName: json["service_name"],
     propertyId: json["property_id"],
     propertyZipcode: json["property_zipcode"],
-    address: json["address"],
+    address2: json["address2"]??"",
     cleanerRole: json["cleaner_role"],
     cleanerAbout: json["cleaner_about"],
     cleanerAddress: json["cleaner_address"],
@@ -93,7 +93,7 @@ class CleanerListByBidModel {
     "service_name": serviceName,
     "property_id": propertyId,
     "property_zipcode": propertyZipcode,
-    "address": address,
+    "address2": address2,
     "cleaner_role": cleanerRole,
     "cleaner_about": cleanerAbout,
     "cleaner_address": cleanerAddress,

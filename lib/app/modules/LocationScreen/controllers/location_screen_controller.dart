@@ -245,7 +245,7 @@ class LocationScreenController extends GetxController {
               icon: markerIcon,
               infoWindow: InfoWindow(
                 title: user.cleanerName,
-                snippet: user.address,
+                snippet: user.address2,
               ),
             ),
           );

@@ -101,7 +101,7 @@ class NewCleanerBidsListView extends GetView<NewCleanerBidsListController> {
                                 "zip_code" : list.propertyZipcode.toString(),
                                 "property_id" : list.propertyId.toString(),
                                 "about" : list.about.toString(),
-                                "location" : list.address.toString(),
+                                "location" : list.address2.toString(),
                                 "air_work" : list.airnestsWorks.toString(),
                                 "platform_fee" : list.platformFee.toString(),
                                 "bid_date" : list.bidDate.toString(),
