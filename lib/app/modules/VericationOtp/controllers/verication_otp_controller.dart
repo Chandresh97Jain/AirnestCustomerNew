@@ -13,7 +13,7 @@ class VericationOtpController extends GetxController {
 
   final count = 0.obs;
   final otpController = TextEditingController().obs;
-  final mobile = "".obs;
+  final email = "".obs;
   final isLoading = false.obs;
 
   final defaultPinTheme = PinTheme(
@@ -48,8 +48,7 @@ class VericationOtpController extends GetxController {
 
   @override
   void onInit() {
-    otpController.value.text = Get.parameters['otp']!;
-    mobile.value = Get.parameters['number']!;
+    email.value = Get.parameters['email']!;
     startTimer();
     super.onInit();
   }
@@ -58,14 +57,13 @@ class VericationOtpController extends GetxController {
     try {
       isLoading(true);
 
-      var response = await ApiService().otpVerify(mobile.value,otpController.value.text);
+      var response = await ApiService().otpVerify(email.value,otpController.value.text);
 
       if (response['status'] == true) {
 
         ToastClass.showToast('${response['message']}',);
 
         var data = {
-          'number':response['data']['mobile'].toString(),
           'user_id':response['data']['id'].toString(),
         };
 
@@ -90,14 +88,14 @@ class VericationOtpController extends GetxController {
     try {
       isLoading(true);
 
-      var response = await ApiService().forgotPasswordApi(mobile.value);
+      var response = await ApiService().forgotPasswordApi(email.value);
 
       if (response['status'] == true) {
 
         ToastClass.showToast('${response['message']}',);
         log("OTP -- ${response['data']['otp'].toString()}");
 
-        otpController.value.text = response['data']['otp'].toString();
+        // otpController.value.text = response['data']['otp'].toString();
         isLoading(false);
 
 

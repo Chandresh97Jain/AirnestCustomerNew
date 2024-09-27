@@ -196,11 +196,11 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future forgotPasswordApi(mobile) async {
+  Future forgotPasswordApi(email) async {
 
     final response = await http.post(Uri.parse(baseURL + forgotPassword),
       body: ({
-        "mobile":mobile
+        "email":email
       }),
     );
 
@@ -210,10 +210,10 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future otpVerify(mobile,otp) async {
+  Future otpVerify(email,otp) async {
     final response = await http.post(Uri.parse(baseURL + matchOTP),
       body: ({
-        'mobile':mobile,
+        'email':email,
         'otp':otp,
       }),
     );

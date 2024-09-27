@@ -46,7 +46,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                         textAlign: TextAlign.center,
                         maxLines: 50,
                         text:
-                        "Enter your phone, we will send a verification code to your mobile",
+                        "Enter your email address, we will send a verification code to your email.",
                         fontWeight: FontWeight.w400,
                         fontSize: 16,
                         color: AppStyles.BlacklightTextcolor,
@@ -67,16 +67,16 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                             horizontal: 12, vertical: 30),
                         child: Column(
                           children: [
-                            TextFieldDesigned(
-                              controller: controller.mobileTextController,
-                              prefixIcon: Image.asset(
-                                "assets/icons/phoneIcon.png",
-                                scale: 3.5,
-                              ),
-                              hintText: "Phone Number",
-                              keyboardType: TextInputType.phone,
-                              maxLength: 10,
-                            ),
+                                TextFieldDesigned(
+                                  controller: controller.emailTextController,
+                                  prefixIcon: Image.asset(
+                                    "assets/icons/Icon-Set.png",
+                                    scale: 3.5,
+                                  ),
+                                  hintText: "Email",
+                                  keyboardType: TextInputType.text,
+                                  maxLength: 35,
+                                ),
                             const SizedBox(
                               height: 20,
                             ),

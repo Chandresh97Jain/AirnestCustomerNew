@@ -77,7 +77,7 @@ class ChatBodVerifyView extends GetView<ChatBodVerifyController> {
                     textAlign: TextAlign.center,
                     maxLines: 50,
                     text:
-                        "Enter your phone, we will send a verification code to your mobile",
+                        "Enter your email address, we will send a verification code to your email",
                     fontWeight: FontWeight.w400,
                     fontSize: 15,
                     color: AppStyles.BlacklightTextcolor,
@@ -101,7 +101,7 @@ class ChatBodVerifyView extends GetView<ChatBodVerifyController> {
                           "assets/icons/phoneIcon.png",
                           scale: 3.5,
                         ),
-                        hintText: "Phone Number",
+                        hintText: "Email",
                         keyboardType: TextInputType.phone,
                       ),
                       const

@@ -53,7 +53,7 @@ class VerifyChangePasswordView extends GetView<VerifyChangePasswordController> {
                     textAlign: TextAlign.center,
                     color: AppStyles.appThemeColor,
                     maxLines: 50,
-                    text: "+1 9854-541-621",
+                    text: " your registered email address",
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
                   ),

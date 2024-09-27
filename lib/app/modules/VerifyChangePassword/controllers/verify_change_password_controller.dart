@@ -15,7 +15,7 @@ class VerifyChangePasswordController extends GetxController {
   final count = 0.obs;
   final otpController = TextEditingController().obs;
   final otp = "".obs;
-  final mobile = "".obs;
+  final email = "".obs;
   final isLoading = false.obs;
   final isLoadingg = false.obs;
 
@@ -52,8 +52,7 @@ class VerifyChangePasswordController extends GetxController {
 
   @override
   void onInit() {
-    otpController.value.text = Get.parameters['otp']!;
-    mobile.value = Get.parameters['number']!;
+    email.value = Get.parameters['email']!;
 
     startTimer();
 
@@ -64,14 +63,14 @@ class VerifyChangePasswordController extends GetxController {
     try {
       isLoading(true);
 
-      var response = await ApiService().otpVerify(mobile.value,otpController.value.text);
+      var response = await ApiService().otpVerify(email.value,otpController.value.text);
 
       if (response['status'] == true) {
 
         ToastClass.showToast('${response['message']}',);
 
         var data = {
-          'number':response['data']['mobile'].toString(),
+          'email':email.value,
           'user_id':response['data']['id'].toString(),
         };
 
@@ -97,14 +96,14 @@ class VerifyChangePasswordController extends GetxController {
     try {
       isLoading(true);
 
-      var response = await ApiService().forgotPasswordApi(mobile.value);
+      var response = await ApiService().forgotPasswordApi(email.value);
 
       if (response['status'] == true) {
 
         ToastClass.showToast('${response['message']}',);
         log("OTP -- ${response['data']['otp'].toString()}");
 
-        otpController.value.text = response['data']['otp'].toString();
+        // otpController.value.text = response['data']['otp'].toString();
         isLoading(false);
 
 

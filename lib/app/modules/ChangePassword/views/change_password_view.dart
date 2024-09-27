@@ -67,14 +67,15 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                               child: Column(
                                 children: [
                                   TextFieldDesigned(
-                                    maxLength: 10,
-                                    controller: controller.mobileController,
+
+                                    controller: controller.emailController,
                                     prefixIcon: Image.asset(
-                                      "assets/icons/phoneIcon.png",
+                                      "assets/icons/Icon-Set.png",
                                       scale: 3.5,
                                     ),
-                                    hintText: "Phone Number",
-                                    keyboardType: TextInputType.phone,
+                                    hintText: "Email",
+                                    keyboardType: TextInputType.text,
+                                    maxLength: 35,
                                   ),
                                   const SizedBox(
                                     height: 20,

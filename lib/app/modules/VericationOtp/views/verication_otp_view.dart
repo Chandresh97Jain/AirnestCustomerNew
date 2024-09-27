@@ -53,7 +53,7 @@ class VericationOtpView extends GetView<VericationOtpController> {
                     textAlign: TextAlign.center,
                     color: AppStyles.appThemeColor,
                     maxLines: 50,
-                    text: controller.mobile.value,
+                    text: controller.email.value,
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
                   ),

@@ -48,7 +48,7 @@ class SignUpVerifyOtpView extends GetView<SignUpVerifyOtpController> {
                       textAlign: TextAlign.center,
                       color: AppStyles.appThemeColor,
                       maxLines: 50,
-                      text: "+${controller.dialCode.value} ${controller.mobile.value}",
+                      text: controller.email.value,
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
                     ),
