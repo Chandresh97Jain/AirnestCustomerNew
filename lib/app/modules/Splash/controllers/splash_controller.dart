@@ -7,7 +7,7 @@ import 'package:power_maids/Notifications/PushNotificationService.dart';
 import 'package:power_maids/Utils/ShowToast.dart';
 import 'package:power_maids/app/routes/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:video_player/video_player.dart';
 
 class SplashController extends GetxController {
   //TODO: Implement SplashController
@@ -15,11 +15,27 @@ class SplashController extends GetxController {
   final count = 0.obs;
   final image = "assets/images/Splash Screen.png".obs;
 
+  late VideoPlayerController videoPlayerController;
+  var isVideoInitialized = false.obs;
+  final videoPath = 'assets/images/CustomerSplash.mp4';
+
+  void initializeVideo() {
+    videoPlayerController = VideoPlayerController.asset(
+      videoPath, // Your video URL
+    )..initialize().then((_) {
+        // Update state once video is initialized
+        isVideoInitialized.value = true;
+        videoPlayerController.play();
+        videoPlayerController.setLooping(true);
+      });
+  }
+
   @override
   void onInit() {
     super.onInit();
     FirebaseNotifications().firebaseInitialization();
     requestLocationPermission();
+    initializeVideo();
   }
 
   @override
@@ -29,6 +45,7 @@ class SplashController extends GetxController {
 
   @override
   void onClose() {
+    videoPlayerController.dispose();
     super.onClose();
   }
 
@@ -36,7 +53,6 @@ class SplashController extends GetxController {
     _timer?.cancel();
     locationSubscription?.cancel();
   }
-
 
   void increment() => count.value++;
   //
@@ -99,7 +115,7 @@ class SplashController extends GetxController {
   //   // );
   //
   // }
-/// 1 code
+  /// 1 code
 //   requestLocationPermission() async {
 //     Location location = Location();
 //     bool _serviceEnabled;
@@ -178,7 +194,7 @@ class SplashController extends GetxController {
       }
     }
     // If all conditions are met, navigate to the appropriate screen
-    Future.delayed(  const Duration(seconds: 2), navigateUser);
+    Future.delayed(const Duration(seconds: 2), navigateUser);
     // navigateUser();
   }
 

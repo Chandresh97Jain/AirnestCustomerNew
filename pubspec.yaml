@@ -104,6 +104,7 @@ dependencies:
   googleapis_auth:
   upgrader: ^10.2.0
   dio: ^5.7.0
+  video_player: ^2.4.6
 
 
 flutter_icons:
@@ -140,6 +141,7 @@ flutter:
      - assets/icons/
      - assets/.env
      - assets/credentials/firebase_service_account.json
+     - assets/images/CustomerSplash.mp4
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
