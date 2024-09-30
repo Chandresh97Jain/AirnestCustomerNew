@@ -9,16 +9,15 @@ import 'dart:io' show Platform;
 import 'get_storage.dart';
 
 class ApiService {
-
   static late final BuildContext context;
 
   /// Airnest Local server
-  static const baseURL = 'https://airnests.manageprojects.in/api/';
-  static const imageURL = 'https://airnests.manageprojects.in/';
+  // static const baseURL = 'https://airnests.manageprojects.in/api/';
+  // static const imageURL = 'https://airnests.manageprojects.in/';
 
   /// Airnest live server
-  // static const baseURL = 'https://admin.airnests.com/api/';
-  // static const imageURL = 'https://admin.airnests.com/';
+  static const baseURL = 'https://admin.airnests.com/api/';
+  static const imageURL = 'https://admin.airnests.com/';
 
   static const String signUp = "auth/signUp";
   static const String signIn = "auth/signIn";
@@ -44,7 +43,8 @@ class ApiService {
   static const String bookingTracking = "bookingTracking";
   static const String bidByCleaner = "bidByCleaner";
   static const String bidByCleanerList = "bidByCleanerList";
-  static const String bidRequestAcceptRejectByCustomer = "bidRequestAcceptRejectByCustomer";
+  static const String bidRequestAcceptRejectByCustomer =
+      "bidRequestAcceptRejectByCustomer";
   static const String bookingRequest = "bookingRequest";
   static const String finalBookingSummary = "finalBookingSummary";
   static const String reviewByCustomer = "reviewByCustomer";
@@ -80,27 +80,23 @@ class ApiService {
   static const String updatePropertyEndpoint = 'update-property';
   static const String removePropertyEndpoint = 'remove-property';
 
-
-
-
-  Future signUpApi(loginType,firstname,lastname,email,password,mobile,deviceId,address,latitude,longitude) async {
-
-    final response = await http.post(Uri.parse(baseURL + signUp),
+  Future signUpApi(loginType, firstname, lastname, email, password, mobile,
+      deviceId, address, latitude, longitude) async {
+    final response = await http.post(
+      Uri.parse(baseURL + signUp),
       body: ({
-
-        "login_type":loginType,
-        "firstname":firstname,
-        "lastname":lastname,
-        "email":email,
-        "password":password,
-        "mobile":mobile,
-        "device_id":deviceId,
-        "invitation_code":"", // optional
-        "role":"0", // 0 = Customer,1 = Cleaner,2 = Co-host
-        "address":address,
-        "latitude":latitude,
-        "longitude":longitude,
-
+        "login_type": loginType,
+        "firstname": firstname,
+        "lastname": lastname,
+        "email": email,
+        "password": password,
+        "mobile": mobile,
+        "device_id": deviceId,
+        "invitation_code": "", // optional
+        "role": "0", // 0 = Customer,1 = Cleaner,2 = Co-host
+        "address": address,
+        "latitude": latitude,
+        "longitude": longitude,
       }),
     );
 
@@ -110,16 +106,16 @@ class ApiService {
 
     return convertDataToJson;
   }
-  Future signInApi(loginType,email,deviceId,password) async {
 
-
-    final response = await http.post(Uri.parse(baseURL + signIn),
+  Future signInApi(loginType, email, deviceId, password) async {
+    final response = await http.post(
+      Uri.parse(baseURL + signIn),
       body: ({
-        "login_type":loginType,
-        "email":email,
-        "device_id":deviceId,
-        "password":password,
-        "role":"0",
+        "login_type": loginType,
+        "email": email,
+        "device_id": deviceId,
+        "password": password,
+        "role": "0",
       }),
     );
 
@@ -129,36 +125,18 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future googleSignIn(loginType,id,deviceId,email,firstname,lastname) async {
-
-    final response = await http.post(Uri.parse(baseURL + signIn),
+  Future googleSignIn(
+      loginType, id, deviceId, email, firstname, lastname) async {
+    final response = await http.post(
+      Uri.parse(baseURL + signIn),
       body: ({
-        "login_type":loginType,
-        "id":id,
-        "device_id":deviceId,
-        "email":email,
-        "firstname":firstname,
-        "lastname":lastname,
-        "role":"0",
-      }),
-    );
-
-    print("Sign_In ========= ${response.body}");
-
-    var convertDataToJson = jsonDecode(response.body);
-    return convertDataToJson;
-  }
-  Future googleSignUp(loginType,id,deviceId,email,firstname,lastname) async {
-
-    final response = await http.post(Uri.parse(baseURL + signUp),
-      body: ({
-        "login_type":loginType,
-        "id":id,
-        "device_id":deviceId,
-        "email":email,
-        "firstname":firstname,
-        "lastname":lastname,
-        "role":"0",
+        "login_type": loginType,
+        "id": id,
+        "device_id": deviceId,
+        "email": email,
+        "firstname": firstname,
+        "lastname": lastname,
+        "role": "0",
       }),
     );
 
@@ -168,7 +146,28 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future updateFirebaseIDAPI(firebaseId,authToken) async {
+  Future googleSignUp(
+      loginType, id, deviceId, email, firstname, lastname) async {
+    final response = await http.post(
+      Uri.parse(baseURL + signUp),
+      body: ({
+        "login_type": loginType,
+        "id": id,
+        "device_id": deviceId,
+        "email": email,
+        "firstname": firstname,
+        "lastname": lastname,
+        "role": "0",
+      }),
+    );
+
+    print("Sign_In ========= ${response.body}");
+
+    var convertDataToJson = jsonDecode(response.body);
+    return convertDataToJson;
+  }
+
+  Future updateFirebaseIDAPI(firebaseId, authToken) async {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     //
     // var authToken = prefs.getString(SDConstant.token);
@@ -185,10 +184,10 @@ class ApiService {
     return convertDataToJson;
   }
 
-
   Future termsAndConditionsApi() async {
-
-    final response = await http.post(Uri.parse(baseURL + termsAndConditions),);
+    final response = await http.post(
+      Uri.parse(baseURL + termsAndConditions),
+    );
 
     print("TermsAndConditions ========= ${response.body}");
 
@@ -197,11 +196,9 @@ class ApiService {
   }
 
   Future forgotPasswordApi(email) async {
-
-    final response = await http.post(Uri.parse(baseURL + forgotPassword),
-      body: ({
-        "email":email
-      }),
+    final response = await http.post(
+      Uri.parse(baseURL + forgotPassword),
+      body: ({"email": email}),
     );
 
     print("forgotPassword ========= ${response.body}");
@@ -210,11 +207,12 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future otpVerify(email,otp) async {
-    final response = await http.post(Uri.parse(baseURL + matchOTP),
+  Future otpVerify(email, otp) async {
+    final response = await http.post(
+      Uri.parse(baseURL + matchOTP),
       body: ({
-        'email':email,
-        'otp':otp,
+        'email': email,
+        'otp': otp,
       }),
     );
 
@@ -227,7 +225,8 @@ class ApiService {
   Future logOut() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + logout),
+    final response = await http.post(
+      Uri.parse(baseURL + logout),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -239,15 +238,18 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future signUpBasicDetails(authToken,whatYourMainGoalForjoiningairnests,howmanypropertiesdoyoumanage,doYouWorkWithAPMS) async {
-    final response = await http.post(Uri.parse(baseURL + customerBasicDetails),
+  Future signUpBasicDetails(authToken, whatYourMainGoalForjoiningairnests,
+      howmanypropertiesdoyoumanage, doYouWorkWithAPMS) async {
+    final response = await http.post(
+      Uri.parse(baseURL + customerBasicDetails),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "what_your_main_goal_for_joining_airnests":whatYourMainGoalForjoiningairnests,
-        "how_many_properties_do_you_manage":howmanypropertiesdoyoumanage,
-        "do_you_work_with_a_PMS":doYouWorkWithAPMS,
+        "what_your_main_goal_for_joining_airnests":
+            whatYourMainGoalForjoiningairnests,
+        "how_many_properties_do_you_manage": howmanypropertiesdoyoumanage,
+        "do_you_work_with_a_PMS": doYouWorkWithAPMS,
       }),
     );
 
@@ -256,12 +258,14 @@ class ApiService {
     var convertDataToJson = jsonDecode(response.body);
     return convertDataToJson;
   }
-  Future resetPass(userId,password,passwordConfirmation) async {
-    final response = await http.post(Uri.parse(baseURL + changePassword),
+
+  Future resetPass(userId, password, passwordConfirmation) async {
+    final response = await http.post(
+      Uri.parse(baseURL + changePassword),
       body: ({
-        'user_id':userId,
-        'password':password,
-        'password_confirmation':passwordConfirmation,
+        'user_id': userId,
+        'password': password,
+        'password_confirmation': passwordConfirmation,
       }),
     );
 
@@ -275,7 +279,8 @@ class ApiService {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
     print("Authorization token $authToken");
-    final response = await http.post(Uri.parse(baseURL + serviceList),
+    final response = await http.post(
+      Uri.parse(baseURL + serviceList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -289,17 +294,18 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future findCleanerCoHostApi(userType,zipcode,serviceId) async {
+  Future findCleanerCoHostApi(userType, zipcode, serviceId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + findCleanerCoHost),
+    final response = await http.post(
+      Uri.parse(baseURL + findCleanerCoHost),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "user_type":userType,
-        "zipcode":zipcode,
-        "service_id":serviceId
+        "user_type": userType,
+        "zipcode": zipcode,
+        "service_id": serviceId
       }),
     );
 
@@ -307,10 +313,12 @@ class ApiService {
     var convertDataToJson = jsonDecode(response.body);
     return convertDataToJson;
   }
+
   Future serviceTypeApi() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + serviceType),
+    final response = await http.post(
+      Uri.parse(baseURL + serviceType),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -320,6 +328,7 @@ class ApiService {
     var convertDataToJson = jsonDecode(response.body);
     return convertDataToJson;
   }
+
   Future customerPropertyAddApi(
       name,
       address,
@@ -334,29 +343,29 @@ class ApiService {
       serviceType,
       latitude,
       longitude,
-      propertyId
-      ) async {
+      propertyId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + customerPropertyAdd),
+    final response = await http.post(
+      Uri.parse(baseURL + customerPropertyAdd),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "name":name,
-        "address":address,
-        "property_size":propertySize,
-        "dont_know_property_size":dontKnowPropertySize,
-        "property_date":propertyDate,
-        "property_time":propertyTime,
-        "description":description,
-        "user_type":userType,
-        "zipcode":zipcode,
-        "services_id":serviceId,
-        "service_type":serviceType,
-        "latitude":latitude,
-        "longitude":longitude,
-        "property_id":propertyId,
+        "name": name,
+        "address": address,
+        "property_size": propertySize,
+        "dont_know_property_size": dontKnowPropertySize,
+        "property_date": propertyDate,
+        "property_time": propertyTime,
+        "description": description,
+        "user_type": userType,
+        "zipcode": zipcode,
+        "services_id": serviceId,
+        "service_type": serviceType,
+        "latitude": latitude,
+        "longitude": longitude,
+        "property_id": propertyId,
       }),
     );
 
@@ -368,7 +377,8 @@ class ApiService {
   Future propertySummary(propertyId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + customerPropertySummary),
+    final response = await http.post(
+      Uri.parse(baseURL + customerPropertySummary),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -382,20 +392,20 @@ class ApiService {
     return convertDataToJson;
   }
 
-
-  Future addCard(cardHolderName,cardNumber,expMonth,expYear,cvv) async {
+  Future addCard(cardHolderName, cardNumber, expMonth, expYear, cvv) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + cardAdd),
+    final response = await http.post(
+      Uri.parse(baseURL + cardAdd),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "card_holder_name":cardHolderName,
-        "card_number":cardNumber,
-        "exp_month":expMonth,
-        "exp_year":expYear,
-        "cvv":cvv,
+        "card_holder_name": cardHolderName,
+        "card_number": cardNumber,
+        "exp_month": expMonth,
+        "exp_year": expYear,
+        "cvv": cvv,
       }),
     );
 
@@ -408,7 +418,8 @@ class ApiService {
   Future adminFees() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.get(Uri.parse(baseURL + adminCommission),
+    final response = await http.get(
+      Uri.parse(baseURL + adminCommission),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -430,7 +441,8 @@ class ApiService {
   Future cardListApi() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + cardList),
+    final response = await http.post(
+      Uri.parse(baseURL + cardList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -442,46 +454,48 @@ class ApiService {
   }
 
   Future cohostPropertyAdd(
-      name,
-      coHostId,
-      userType,
-      address,
-      propertySize,
-      bookingDate,
-      bookingTime,
-      describeYourNeed,
-      serviceType,
-      zipcode,
-      cleanerNeedsToWashAndDryLinenAndTowels,
-      iProvideCleaningSupplies,
-      squareFeet,
-      squareFeetPrice,
-      servicesId,
-      propertyId,
-     ) async {
+    name,
+    coHostId,
+    userType,
+    address,
+    propertySize,
+    bookingDate,
+    bookingTime,
+    describeYourNeed,
+    serviceType,
+    zipcode,
+    cleanerNeedsToWashAndDryLinenAndTowels,
+    iProvideCleaningSupplies,
+    squareFeet,
+    squareFeetPrice,
+    servicesId,
+    propertyId,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bookCoHostWithProperty),
+    final response = await http.post(
+      Uri.parse(baseURL + bookCoHostWithProperty),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "name":name,
-        "co_host_id":coHostId,
-        "user_type":userType,
-        "address":address,
-        "property_size":propertySize,
-        "property_date":bookingDate,
-        "property_time":bookingTime,
-        "description":describeYourNeed,
-        "service_type":serviceType,
-        "zipcode":zipcode,
-        "cleaner_needs_to_wash_and_dry_linen_and_towels":cleanerNeedsToWashAndDryLinenAndTowels, //  0/1
-        "i_provide_cleaning_supplies":iProvideCleaningSupplies, //  0/1
-        "square_feet":squareFeet,
-        "square_feet_price":squareFeetPrice,
-        "services_id":servicesId,
-        "property_id":propertyId,
+        "name": name,
+        "co_host_id": coHostId,
+        "user_type": userType,
+        "address": address,
+        "property_size": propertySize,
+        "property_date": bookingDate,
+        "property_time": bookingTime,
+        "description": describeYourNeed,
+        "service_type": serviceType,
+        "zipcode": zipcode,
+        "cleaner_needs_to_wash_and_dry_linen_and_towels":
+            cleanerNeedsToWashAndDryLinenAndTowels, //  0/1
+        "i_provide_cleaning_supplies": iProvideCleaningSupplies, //  0/1
+        "square_feet": squareFeet,
+        "square_feet_price": squareFeetPrice,
+        "services_id": servicesId,
+        "property_id": propertyId,
       }),
     );
 
@@ -509,36 +523,35 @@ class ApiService {
       cleanerId,
       washTowels,
       cleanerSupplies,
-      propertyId
-      ) async {
+      propertyId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bookCleanerWithProperty),
+    final response = await http.post(
+      Uri.parse(baseURL + bookCleanerWithProperty),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "name":name,
-        "address":address,
-        "user_type":userType,
-        "property_size":propertySize,
-        "dont_know_property_size":dontKnowPropertySize,
-        "property_date":propertyDate,
-        "property_time":propertyTime,
-        "description":description, //  0/1
-        "zipcode":zipcode,
-        "services_id":servicesId,
+        "name": name,
+        "address": address,
+        "user_type": userType,
+        "property_size": propertySize,
+        "dont_know_property_size": dontKnowPropertySize,
+        "property_date": propertyDate,
+        "property_time": propertyTime,
+        "description": description, //  0/1
+        "zipcode": zipcode,
+        "services_id": servicesId,
 
-        "service_label_id":serviceLabelId,
-        "service_label_title":serviceLabelTitle,
-        "service_label_qty":serviceLabelQty,
-        "service_label_unit_price":serviceLabelUnitPrice,
-        "service_type":serviceType,
-        "cleaner_id":cleanerId,
-        "cleaner_needs_to_wash_and_dry_linen_and_towels":washTowels,
-        "i_provide_cleaning_supplies":cleanerSupplies,
-        "property_id":propertyId,
-
+        "service_label_id": serviceLabelId,
+        "service_label_title": serviceLabelTitle,
+        "service_label_qty": serviceLabelQty,
+        "service_label_unit_price": serviceLabelUnitPrice,
+        "service_type": serviceType,
+        "cleaner_id": cleanerId,
+        "cleaner_needs_to_wash_and_dry_linen_and_towels": washTowels,
+        "i_provide_cleaning_supplies": cleanerSupplies,
+        "property_id": propertyId,
       }),
     );
 
@@ -564,37 +577,34 @@ class ApiService {
       cleanerId,
       washTowels,
       cleanerSupplies,
-      propertyId
-      ) async {
+      propertyId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bookCleanerForPerHour),
+    final response = await http.post(
+      Uri.parse(baseURL + bookCleanerForPerHour),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
-
       body: ({
-        "name":name,
-        "address":address,
-        "user_type":userType,
-        "property_size":propertySize,
-        "dont_know_property_size":dontKnowPropertySize,
-        "property_date":propertyDate,
-        "property_time":propertyTime,
-        "description":description, //  0/1
-        "zipcode":zipcode,
-        "services_id":servicesId,
-        "service_label_qty":serviceLabelQty,
-        "service_label_unit_price":serviceLabelUnitPrice,
-        "service_type":serviceType,
-        "cleaner_id":cleanerId,
-        "cleaner_needs_to_wash_and_dry_linen_and_towels":washTowels,
-        "i_provide_cleaning_supplies":cleanerSupplies,
-        "property_id":propertyId,
-
+        "name": name,
+        "address": address,
+        "user_type": userType,
+        "property_size": propertySize,
+        "dont_know_property_size": dontKnowPropertySize,
+        "property_date": propertyDate,
+        "property_time": propertyTime,
+        "description": description, //  0/1
+        "zipcode": zipcode,
+        "services_id": servicesId,
+        "service_label_qty": serviceLabelQty,
+        "service_label_unit_price": serviceLabelUnitPrice,
+        "service_type": serviceType,
+        "cleaner_id": cleanerId,
+        "cleaner_needs_to_wash_and_dry_linen_and_towels": washTowels,
+        "i_provide_cleaning_supplies": cleanerSupplies,
+        "property_id": propertyId,
       }),
     );
-    
 
     print("Cohost_Property_Add  ========= ${response.body}");
     var convertDataToJson = jsonDecode(response.body);
@@ -604,7 +614,8 @@ class ApiService {
   Future extraServiceList() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + extraServicesList),
+    final response = await http.post(
+      Uri.parse(baseURL + extraServicesList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -616,25 +627,27 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future checkOutApi(cleanerCoHostId,propertyId,transactionId,bookingDate,bookingTime,serviceId,total,bidId,booking_type,grand_total) async {
+  Future checkOutApi(cleanerCoHostId, propertyId, transactionId, bookingDate,
+      bookingTime, serviceId, total, bidId, booking_type, grand_total) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + checkOut),
+    final response = await http.post(
+      Uri.parse(baseURL + checkOut),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "cleaner_co_host_id":cleanerCoHostId,
-        "property_id":propertyId,
-        "transaction_id":transactionId,
-        "booking_date":bookingDate,
-        "booking_time":bookingTime,
-        "service_id":serviceId,
-        "total":total,
+        "cleaner_co_host_id": cleanerCoHostId,
+        "property_id": propertyId,
+        "transaction_id": transactionId,
+        "booking_date": bookingDate,
+        "booking_time": bookingTime,
+        "service_id": serviceId,
+        "total": total,
         // "card_id":"1",
-        "bid_id":bidId,
-        "booking_type":booking_type,
-        "grand_total":grand_total
+        "bid_id": bidId,
+        "booking_type": booking_type,
+        "grand_total": grand_total
       }),
     );
 
@@ -647,12 +660,13 @@ class ApiService {
   Future bookingTrackingApi(bookingId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bookingTracking),
+    final response = await http.post(
+      Uri.parse(baseURL + bookingTracking),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "booking_id":bookingId,
+        "booking_id": bookingId,
       }),
     );
 
@@ -667,12 +681,13 @@ class ApiService {
   Future bidByCleanerApi(userType) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bidByCleaner),
+    final response = await http.post(
+      Uri.parse(baseURL + bidByCleaner),
       headers: {
-        'Authorization': 'Bearer $authToken',   },
+        'Authorization': 'Bearer $authToken',
+      },
       body: ({
-        "user_type":userType // cleaner =1,co-host = 2
-
+        "user_type": userType // cleaner =1,co-host = 2
       }),
     );
     print("Bid_By_Cleaner ========= ${response.body}");
@@ -684,12 +699,13 @@ class ApiService {
   Future deleteBid(bidId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bidRemove),
+    final response = await http.post(
+      Uri.parse(baseURL + bidRemove),
       headers: {
-        'Authorization': 'Bearer $authToken',      },
+        'Authorization': 'Bearer $authToken',
+      },
       body: ({
-        "bid_id":bidId // cleaner =1,co-host = 2
-
+        "bid_id": bidId // cleaner =1,co-host = 2
       }),
     );
     print("Bid_By_Cleaner ========= ${response.body}");
@@ -701,12 +717,13 @@ class ApiService {
   Future bidByCleanerListApi(bidId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bidByCleanerList),
+    final response = await http.post(
+      Uri.parse(baseURL + bidByCleanerList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "bid_id":bidId,
+        "bid_id": bidId,
       }),
     );
 
@@ -716,17 +733,18 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future bidRequestAcceptRejectByCustomerApi(bidId,cleanerId,status) async {
+  Future bidRequestAcceptRejectByCustomerApi(bidId, cleanerId, status) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bidRequestAcceptRejectByCustomer),
+    final response = await http.post(
+      Uri.parse(baseURL + bidRequestAcceptRejectByCustomer),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "bid_id":bidId,
-        "cleaner_id":cleanerId,
-        "status":status   // 1-for accept , 2-for reject
+        "bid_id": bidId,
+        "cleaner_id": cleanerId,
+        "status": status // 1-for accept , 2-for reject
       }),
     );
 
@@ -739,11 +757,13 @@ class ApiService {
   Future bookingRequestList(requestType) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + bookingRequest),
+    final response = await http.post(
+      Uri.parse(baseURL + bookingRequest),
       headers: {
-        'Authorization': 'Bearer $authToken',      },
+        'Authorization': 'Bearer $authToken',
+      },
       body: ({
-        "request_type":requestType // request_type = history , for history
+        "request_type": requestType // request_type = history , for history
       }),
     );
 
@@ -756,12 +776,10 @@ class ApiService {
   Future finalBookingSummaryApi(bookingId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + finalBookingSummary),
-      headers: {
-        'Authorization': 'Bearer $authToken'},
-      body: ({
-        "booking_id":bookingId
-      }),
+    final response = await http.post(
+      Uri.parse(baseURL + finalBookingSummary),
+      headers: {'Authorization': 'Bearer $authToken'},
+      body: ({"booking_id": bookingId}),
     );
 
     print("Final_Booking_Summary ========= ${response.body}");
@@ -770,18 +788,19 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future reviewByCustomerApi(cleanerId,rating,title,review) async {
+  Future reviewByCustomerApi(cleanerId, rating, title, review) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + reviewByCustomer),
+    final response = await http.post(
+      Uri.parse(baseURL + reviewByCustomer),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "cleaner_id":cleanerId,
-        "rating":rating,
-        "title":title,
-        "review":review
+        "cleaner_id": cleanerId,
+        "rating": rating,
+        "title": title,
+        "review": review
       }),
     );
 
@@ -791,11 +810,11 @@ class ApiService {
     return convertDataToJson;
   }
 
-
   Future getProfileApi() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + getProfile),
+    final response = await http.post(
+      Uri.parse(baseURL + getProfile),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -807,18 +826,24 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future updateProfileApi(firstname,lastname,mobile,image,address,latitude,longitude) async {
+  Future updateProfileApi(
+      firstname, lastname, mobile, image, address, latitude, longitude) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    Map<String, String> headers = {'Authorization': 'Bearer $authToken',};
+    Map<String, String> headers = {
+      'Authorization': 'Bearer $authToken',
+    };
 
-    var request = http.MultipartRequest('POST', Uri.parse(baseURL + updateProfile),);
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse(baseURL + updateProfile),
+    );
     request.headers.addAll(headers);
 
     request.fields['firstname'] = firstname;
     request.fields['lastname'] = lastname;
     request.fields['zipcode'] = "123456";
-    request.fields['experience'] = experience??"";
+    request.fields['experience'] = experience ?? "";
     request.fields['mobile'] = mobile;
     request.fields['address'] = address;
     request.fields['latitude'] = latitude;
@@ -831,7 +856,8 @@ class ApiService {
       // Add the image file
       var stream = http.ByteStream(imageFile.openRead());
       var length = await imageFile.length();
-      var multipartFile = http.MultipartFile('avatar', stream, length, filename: imageFile.path);
+      var multipartFile = http.MultipartFile('avatar', stream, length,
+          filename: imageFile.path);
 
       // Add the image file to the request
       request.files.add(multipartFile);
@@ -851,17 +877,19 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future updatePassword(oldPassword,newPassword,newPasswordConfirmation) async {
+  Future updatePassword(
+      oldPassword, newPassword, newPasswordConfirmation) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + updatePasswordd),
+    final response = await http.post(
+      Uri.parse(baseURL + updatePasswordd),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "old_password":oldPassword,
-        "new_password":newPassword,
-        "new_password_confirmation":newPasswordConfirmation,
+        "old_password": oldPassword,
+        "new_password": newPassword,
+        "new_password_confirmation": newPasswordConfirmation,
       }),
     );
 
@@ -871,10 +899,11 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future serviceDetailsApi(serviceId,cleanerCohostId) async {
+  Future serviceDetailsApi(serviceId, cleanerCohostId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + serviceDetails),
+    final response = await http.post(
+      Uri.parse(baseURL + serviceDetails),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -888,10 +917,12 @@ class ApiService {
     var convertDataToJson = jsonDecode(response.body);
     return convertDataToJson;
   }
+
   Future servicePhotoList(cleanerCohostId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + cleanerServicesPhotoList),
+    final response = await http.post(
+      Uri.parse(baseURL + cleanerServicesPhotoList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -908,9 +939,11 @@ class ApiService {
   Future cleanerCoHostDetailsApi(cleanerCohostId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + cleanerCoHostDetails),
+    final response = await http.post(
+      Uri.parse(baseURL + cleanerCoHostDetails),
       headers: {
-        'Authorization': 'Bearer $authToken',      },
+        'Authorization': 'Bearer $authToken',
+      },
       body: ({
         "user_id": cleanerCohostId,
       }),
@@ -922,17 +955,18 @@ class ApiService {
   }
 
   // co-host  -- square_feet
-  Future coHostServicesPriceApi(coHostId,roleType) async {
+  Future coHostServicesPriceApi(coHostId, roleType) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + coHostServicesPrice),
+    final response = await http.post(
+      Uri.parse(baseURL + coHostServicesPrice),
       headers: {
-        'Authorization': 'Bearer $authToken',      },
+        'Authorization': 'Bearer $authToken',
+      },
       body: ({
-        "co_host_id": coHostId,  // cleaner_id and co-host_id
+        "co_host_id": coHostId, // cleaner_id and co-host_id
         "role": roleType
       }),
-
     );
     print("co_host_id ---  ${coHostId.toString()}");
     print("CoHost_Services_Price ========= ${response.body}");
@@ -944,11 +978,13 @@ class ApiService {
   Future cleanerCoHostPerHourPriceApi(cleanerId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + cleanerCoHostPerHourPrice),
+    final response = await http.post(
+      Uri.parse(baseURL + cleanerCoHostPerHourPrice),
       headers: {
-        'Authorization': 'Bearer $authToken',      },
+        'Authorization': 'Bearer $authToken',
+      },
       body: ({
-        "cleaner_id": cleanerId,   // cleaner_id and co-host_id
+        "cleaner_id": cleanerId, // cleaner_id and co-host_id
       }),
     );
 
@@ -960,7 +996,8 @@ class ApiService {
   Future nearByMaidApi() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + nearByMaid),
+    final response = await http.post(
+      Uri.parse(baseURL + nearByMaid),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -980,7 +1017,8 @@ class ApiService {
   Future recommendedListApi() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + recommendedList),
+    final response = await http.post(
+      Uri.parse(baseURL + recommendedList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -1000,12 +1038,13 @@ class ApiService {
   Future favoriteUnfavoriteApi(cleanerCoHostId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + favoriteUnfavorite),
+    final response = await http.post(
+      Uri.parse(baseURL + favoriteUnfavorite),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "cleaner_co_host_id":cleanerCoHostId,
+        "cleaner_co_host_id": cleanerCoHostId,
       }),
     );
     print("Favorite_Unfavorite ========= ${response.body}");
@@ -1017,7 +1056,8 @@ class ApiService {
   Future favoriteList() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + favoriteUnfavoriteList),
+    final response = await http.post(
+      Uri.parse(baseURL + favoriteUnfavoriteList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -1034,11 +1074,11 @@ class ApiService {
   Future blogList() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + blogs),
+    final response = await http.post(
+      Uri.parse(baseURL + blogs),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
-
     );
     print("Blog_List ========= ${response.body}");
 
@@ -1049,7 +1089,8 @@ class ApiService {
   Future squareFeetListApi() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + squareFeetList),
+    final response = await http.post(
+      Uri.parse(baseURL + squareFeetList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -1063,7 +1104,8 @@ class ApiService {
   Future customerPropertyListt() async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + customerPropertyList),
+    final response = await http.post(
+      Uri.parse(baseURL + customerPropertyList),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
@@ -1077,14 +1119,14 @@ class ApiService {
   Future blogDetailsApi(blogId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
-    final response = await http.post(Uri.parse(baseURL + blogDetails),
+    final response = await http.post(
+      Uri.parse(baseURL + blogDetails),
       headers: {
         'Authorization': 'Bearer $authToken',
       },
       body: ({
-        "blog_id":blogId,
+        "blog_id": blogId,
       }),
-
     );
     print("Blog_Details ========= ${response.body}");
 
@@ -1108,6 +1150,7 @@ class ApiService {
     var convertDataToJson = jsonDecode(response.body);
     return convertDataToJson;
   }
+
   Future startVideoCall(remoteUserId) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
@@ -1132,9 +1175,7 @@ class ApiService {
         headers: {
           'Authorization': 'Bearer $authToken',
         },
-        body: ({
-
-        }));
+        body: ({}));
     log("removeAccountApi ========= ${response.body.toString()}");
 
     var convertDataToJson = jsonDecode(response.body);
@@ -1148,11 +1189,7 @@ class ApiService {
         headers: {
           'Authorization': 'Bearer $authToken',
         },
-        body: ({
-
-          "card_id":cardId
-
-        }));
+        body: ({"card_id": cardId}));
     log("cardRemoveApi ========= ${response.body.toString()}");
 
     var convertDataToJson = jsonDecode(response.body);
@@ -1165,17 +1202,17 @@ class ApiService {
 
     log("Authorization token $authToken");
 
-    final response = await http.post(Uri.parse(baseURL + notificationListEndpoint),
-        headers: {
-          'Authorization': 'Bearer $authToken',
-        },
-        body: ({}));
+    final response =
+        await http.post(Uri.parse(baseURL + notificationListEndpoint),
+            headers: {
+              'Authorization': 'Bearer $authToken',
+            },
+            body: ({}));
 
     var convertDataToJson = jsonDecode(response.body);
     log('notificationListAPI-----------------------------$convertDataToJson');
     return convertDataToJson;
   }
-
 
   Future readNotificationAPI({notificationId}) async {
     final prefs = await SharedPreferences.getInstance();
@@ -1183,11 +1220,12 @@ class ApiService {
 
     log("Authorization token $authToken");
 
-    final response = await http.post(Uri.parse(baseURL + readNotificationEndpoint),
-        headers: {
-          'Authorization': 'Bearer $authToken',
-        },
-        body: ({"notification_id": notificationId}));
+    final response =
+        await http.post(Uri.parse(baseURL + readNotificationEndpoint),
+            headers: {
+              'Authorization': 'Bearer $authToken',
+            },
+            body: ({"notification_id": notificationId}));
 
     var convertDataToJson = jsonDecode(response.body);
     log('readNotificationAPI-----------------------------$convertDataToJson');
@@ -1230,7 +1268,8 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future addPropertyAPI({name, address, latitude, longitude, propertySize}) async {
+  Future addPropertyAPI(
+      {name, address, latitude, longitude, propertySize}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var authToken = prefs.getString('auth_token');
@@ -1242,14 +1281,11 @@ class ApiService {
           'Authorization': 'Bearer $authToken',
         },
         body: ({
-
           "name": name,
           "address": address,
           "latitude": latitude,
           "longitude": longitude,
           "property_size": propertySize,
-
-
         }));
 
     var convertDataToJson = jsonDecode(response.body);
@@ -1257,29 +1293,27 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future updatePropertyAPI({propertyId,name, address, latitude, longitude, propertySize}) async {
-
+  Future updatePropertyAPI(
+      {propertyId, name, address, latitude, longitude, propertySize}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var authToken = prefs.getString('auth_token');
 
     log("Authorization token $authToken");
 
-    final response = await http.post(Uri.parse(baseURL + updatePropertyEndpoint),
-        headers: {
-          'Authorization': 'Bearer $authToken',
-        },
-        body: ({
-
-          "property_id": propertyId,
-          "name": name,
-          "address": address,
-          "latitude": latitude,
-          "longitude": longitude,
-          "property_size": propertySize,
-
-
-        }));
+    final response =
+        await http.post(Uri.parse(baseURL + updatePropertyEndpoint),
+            headers: {
+              'Authorization': 'Bearer $authToken',
+            },
+            body: ({
+              "property_id": propertyId,
+              "name": name,
+              "address": address,
+              "latitude": latitude,
+              "longitude": longitude,
+              "property_size": propertySize,
+            }));
 
     var convertDataToJson = jsonDecode(response.body);
     log('updatePropertyAPI-----------------------------$convertDataToJson');
@@ -1293,17 +1327,14 @@ class ApiService {
 
     log("Authorization token $authToken");
 
-    final response = await http.post(Uri.parse(baseURL + removePropertyEndpoint),
-        headers: {
-          'Authorization': 'Bearer $authToken',
-        },
-        body: ({
-
-          "property_id": propertyId,
-
-
-
-        }));
+    final response =
+        await http.post(Uri.parse(baseURL + removePropertyEndpoint),
+            headers: {
+              'Authorization': 'Bearer $authToken',
+            },
+            body: ({
+              "property_id": propertyId,
+            }));
 
     var convertDataToJson = jsonDecode(response.body);
     log('removePropertyAPI-----------------------------$convertDataToJson');
@@ -1324,10 +1355,4 @@ class ApiService {
     log('GetTermsAndConditions-----------------------------$convertDataToJson');
     return convertDataToJson;
   }
-
-
-
-
-
-
 }
