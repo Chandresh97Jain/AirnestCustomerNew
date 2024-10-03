@@ -71,7 +71,7 @@ abstract class Routes {
   static const BIDSUMMARYBOOKING = _Paths.BIDSUMMARYBOOKING;
   static const CONNECTIVITY_SCREEN = _Paths.CONNECTIVITY_SCREEN;
   static const TERMS_AND_CONDITIONS = _Paths.TERMS_AND_CONDITIONS;
-
+  static const CONTACT_US = _Paths.CONTACT_US;
 }
 
 abstract class _Paths {
@@ -142,5 +142,5 @@ abstract class _Paths {
   static const BIDSUMMARYBOOKING = '/bid-summary-booking';
   static const CONNECTIVITY_SCREEN = '/connectivity-screen';
   static const TERMS_AND_CONDITIONS = '/terms-and-conditions';
-
+  static const CONTACT_US = '/contact-us';
 }

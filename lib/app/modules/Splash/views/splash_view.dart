@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:power_maids/Utils/color_style.dart';
 import 'package:power_maids/Utils/global_text.dart';
 import 'package:power_maids/app/modules/Splash/controllers/splash_controller.dart';
 import 'package:video_player/video_player.dart';
@@ -43,7 +44,7 @@ class SplashView extends GetView<SplashController> {
 
                   // Positioned widget to place logo and text at the bottom
                   Positioned(
-                    bottom: 30.0, // Adjust the distance from the bottom
+                    bottom: 50.0, // Adjust the distance from the bottom
                     left: 0,
                     right: 0,
                     child: Column(
@@ -51,11 +52,11 @@ class SplashView extends GetView<SplashController> {
                       children: [
                         // Your logo widget
                         Image.asset(
-                          'assets/icons/logo.png', // Replace with your logo path
+                          'assets/images/New Logo (2).png', // Replace with your logo path
                           width: 150, // Adjust logo size
                           height: 150,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         // Your text widget
                         Textwidget(
                           text: 'Airnests',

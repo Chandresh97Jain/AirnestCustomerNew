@@ -499,49 +499,49 @@ class AddRequirementCreateBidView
                   const SizedBox(
                     height: 15,
                   ),
-                  SizedBox(
-                    height: 50,
-                    child: ListView.builder(
-                        itemCount: controller.serviceTypeList.length,
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemBuilder: (buildContext, index) {
-                          var servideList = controller.serviceTypeList[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(10),
-                              onTap: () {
-                                controller.selectedServiceTypeId.value = servideList.id.toString();
-                              },
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Obx(() => controller.selectedServiceTypeId.value ==
-                                      servideList.id.toString()
-                                      ? Image.asset(
-                                    "assets/icons/graycirculefill.png",
-                                    scale: 3,
-                                  )
-                                      : Image.asset(
-                                    "assets/icons/graycircule.png",
-                                    scale: 3,
-                                  )
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Textwidget(
-                                    maxLines: 5,
-                                    text: servideList.title,
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
+                  // SizedBox(
+                  //   height: 50,
+                  //   child: ListView.builder(
+                  //       itemCount: controller.serviceTypeList.length,
+                  //       scrollDirection: Axis.horizontal,
+                  //       shrinkWrap: true,
+                  //       itemBuilder: (buildContext, index) {
+                  //         var servideList = controller.serviceTypeList[index];
+                  //         return Padding(
+                  //           padding: const EdgeInsets.only(right: 12),
+                  //           child: InkWell(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             onTap: () {
+                  //               controller.selectedServiceTypeId.value = servideList.id.toString();
+                  //             },
+                  //             child: Row(
+                  //               crossAxisAlignment: CrossAxisAlignment.center,
+                  //               mainAxisAlignment: MainAxisAlignment.center,
+                  //               children: [
+                  //                 Obx(() => controller.selectedServiceTypeId.value ==
+                  //                     servideList.id.toString()
+                  //                     ? Image.asset(
+                  //                   "assets/icons/graycirculefill.png",
+                  //                   scale: 3,
+                  //                 )
+                  //                     : Image.asset(
+                  //                   "assets/icons/graycircule.png",
+                  //                   scale: 3,
+                  //                 )
+                  //                 ),
+                  //                 const SizedBox(
+                  //                   width: 5,
+                  //                 ),
+                  //                 Textwidget(
+                  //                   maxLines: 5,
+                  //                   text: servideList.title,
+                  //                 )
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         );
+                  //       }),
+                  // ),
                 ],
               ),
             ),

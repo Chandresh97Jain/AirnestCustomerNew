@@ -17,7 +17,7 @@ class SplashController extends GetxController {
 
   late VideoPlayerController videoPlayerController;
   var isVideoInitialized = false.obs;
-  final videoPath = 'assets/images/CustomerSplash.mp4';
+  final videoPath = 'assets/images/customerSplash2.mp4.mp4';
 
   void initializeVideo() {
     videoPlayerController = VideoPlayerController.asset(

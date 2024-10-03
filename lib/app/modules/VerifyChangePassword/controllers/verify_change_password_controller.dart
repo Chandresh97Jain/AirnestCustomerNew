@@ -8,7 +8,6 @@ import 'package:power_maids/Utils/ShowToast.dart';
 import 'package:power_maids/Utils/api_service.dart';
 import 'package:power_maids/app/routes/app_pages.dart';
 
-
 class VerifyChangePasswordController extends GetxController {
   //TODO: Implement VerifyChangePasswordController
 
@@ -18,7 +17,6 @@ class VerifyChangePasswordController extends GetxController {
   final email = "".obs;
   final isLoading = false.obs;
   final isLoadingg = false.obs;
-
 
   final defaultPinTheme = PinTheme(
     width: 56,
@@ -39,7 +37,7 @@ class VerifyChangePasswordController extends GetxController {
     const oneSec = Duration(seconds: 1);
     timer = Timer.periodic(
       oneSec,
-          (Timer timer) {
+      (Timer timer) {
         if (start.value == 0) {
           timer.cancel();
           isLoadingg(false);
@@ -63,32 +61,31 @@ class VerifyChangePasswordController extends GetxController {
     try {
       isLoading(true);
 
-      var response = await ApiService().otpVerify(email.value,otpController.value.text);
+      var response = await ApiService()
+          .otpVerifyForgot(email.value, otpController.value.text);
 
       if (response['status'] == true) {
-
-        ToastClass.showToast('${response['message']}',);
+        ToastClass.showToast(
+          '${response['message']}',
+        );
 
         var data = {
-          'email':email.value,
-          'user_id':response['data']['id'].toString(),
+          'email': email.value,
+          'user_id': response['data']['id'].toString(),
         };
 
         // Get.toNamed(Routes.RESET_PASSWORD,parameters: data);
-        Get.offNamed(Routes.RESET_CHANGE_PASSWORD,parameters: data);
+        Get.offNamed(Routes.RESET_CHANGE_PASSWORD, parameters: data);
 
         isLoading(false);
-
-
       } else if (response['status'] == false) {
-        ToastClass.showToast('${response['message']}',);
+        ToastClass.showToast(
+          '${response['message']}',
+        );
         isLoading(false);
       }
-
     } finally {
-
       isLoading(false);
-
     }
   }
 
@@ -99,26 +96,23 @@ class VerifyChangePasswordController extends GetxController {
       var response = await ApiService().forgotPasswordApi(email.value);
 
       if (response['status'] == true) {
-
-        ToastClass.showToast('${response['message']}',);
+        ToastClass.showToast(
+          '${response['message']}',
+        );
         log("OTP -- ${response['data']['otp'].toString()}");
 
         // otpController.value.text = response['data']['otp'].toString();
         isLoading(false);
-
-
       } else if (response['status'] == false) {
-        ToastClass.showToast('${response['message']}',);
+        ToastClass.showToast(
+          '${response['message']}',
+        );
         isLoading(false);
       }
-
     } finally {
-
       isLoading(false);
-
     }
   }
-
 
   @override
   void onReady() {

@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:power_maids/app/modules/ContactUs/bindings/contact_us_binding.dart';
+import 'package:power_maids/app/modules/ContactUs/views/contact_us_view.dart';
 import 'package:power_maids/app/modules/TermsAndConditions/bindings/terms_and_conditions_binding.dart';
 import 'package:power_maids/app/modules/TermsAndConditions/views/terms_and_conditions_view.dart';
 
@@ -451,6 +453,11 @@ class AppPages {
       name: _Paths.TERMS_AND_CONDITIONS,
       page: () => const TermsAndConditionsView(),
       binding: TermsAndConditionsBinding(),
+    ),
+   GetPage(
+      name: _Paths.CONTACT_US,
+      page: () => const ContactUsView(),
+      binding: ContactUsBinding(),
     ),
 
   ];

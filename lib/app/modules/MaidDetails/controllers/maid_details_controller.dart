@@ -16,7 +16,7 @@ class MaidDetailsController extends GetxController {
   final cleanerCohostId = ''.obs;
   final userType = "".obs;
   final serviceId = "".obs;
-  final zipCode = "".obs;
+  final address = "".obs;
   final serviceName = "".obs;
 
 
@@ -32,7 +32,7 @@ class MaidDetailsController extends GetxController {
 
     id.value = Get.parameters['id']??"";
     title.value = Get.parameters['title']??"";
-    zipCode.value = Get.parameters['zip_code']??"";
+    address.value = Get.parameters['address']??"";
     cleanerCohostId.value = Get.parameters['cleaner_cohost_id']??"";
     userType.value = Get.parameters['user_type']??"";
     serviceId.value = Get.parameters['service_id']??"";

@@ -141,7 +141,7 @@ flutter:
      - assets/icons/
      - assets/.env
      - assets/credentials/firebase_service_account.json
-     - assets/images/CustomerSplash.mp4
+     - assets/images/customerSplash2.mp4
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

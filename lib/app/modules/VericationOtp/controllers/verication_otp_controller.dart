@@ -49,6 +49,7 @@ class VericationOtpController extends GetxController {
   @override
   void onInit() {
     email.value = Get.parameters['email']!;
+    
     startTimer();
     super.onInit();
   }
@@ -57,7 +58,7 @@ class VericationOtpController extends GetxController {
     try {
       isLoading(true);
 
-      var response = await ApiService().otpVerify(email.value,otpController.value.text);
+      var response = await ApiService().otpVerifyForgot(email.value,otpController.value.text);
 
       if (response['status'] == true) {
 

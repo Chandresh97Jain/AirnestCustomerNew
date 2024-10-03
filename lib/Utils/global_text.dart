@@ -34,7 +34,6 @@ class Textwidget extends StatelessWidget {
        style: TextStyle(
          overflow: TextOverflow.ellipsis,
           height: height,
-          
           fontFamily: "JosefinSans",
           fontSize: fontSize,
           fontWeight: fontWeight,

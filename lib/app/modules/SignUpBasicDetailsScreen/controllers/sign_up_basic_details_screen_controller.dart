@@ -19,8 +19,7 @@ class SignUpBasicDetailsScreenController extends GetxController {
 
 
   void navigateUser() async {
-       Get.toNamed(Routes.EDIT_PROFILE,arguments: true);
-
+       Get.offAllNamed(Routes.EDIT_PROFILE,arguments: true);
   }
 
   List<bool> isSelected = [true, false].obs;
@@ -34,7 +33,7 @@ class SignUpBasicDetailsScreenController extends GetxController {
   void onInit() {
     // user_id.value = Get.parameters['user_id']!;
     authToken.value = Get.parameters['auth_token']!;
-    name.value = Get.parameters['first_name']!;
+    name.value = Get.parameters['first_name']??"";
     super.onInit();
   }
 

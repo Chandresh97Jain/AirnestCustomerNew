@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:power_maids/GoogleMap/google_map_and_places.dart';
 import 'package:power_maids/Utils/ShowToast.dart';
 import 'package:power_maids/Utils/api_service.dart';
 import 'package:power_maids/app/modules/CreateBidForCleanerAndCohost/model/service_list_model.dart';
@@ -12,6 +13,10 @@ class SelectServicesController extends GetxController {
   final count = 0.obs;
   final title = "".obs;
   final id = "".obs;
+
+
+  final GoogleMapServiceController googleMapService =
+      Get.put(GoogleMapServiceController());
 
   final nextScreendis = "".obs;
   final selectedServiceId = "".obs;

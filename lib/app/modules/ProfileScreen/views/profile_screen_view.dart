@@ -270,6 +270,21 @@ class ProfileScreenView extends GetView<ProfileScreenController> {
                     thickness: 1,
                     color: AppStyles.deviderColor,
                   ),
+                    ProfileUI(
+                    iconColor: AppStyles.appThemeColor,
+                    iconImages: 'assets/icons/customer-service.png',
+                    title: 'Contact us',
+                    onPressed: () {
+                      Get.toNamed(Routes.CONTACT_US);
+                    },
+                  ),
+                     Divider(
+                    endIndent: 18,
+                    indent: 18,
+                    height: 0,
+                    thickness: 1,
+                    color: AppStyles.deviderColor,
+                  ),
                   ProfileUI(
                     iconColor: AppStyles.appThemeColor,
                     iconImages: 'assets/icons/logoutIcon.png',

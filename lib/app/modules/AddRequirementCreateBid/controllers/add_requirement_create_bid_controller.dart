@@ -314,10 +314,10 @@ class AddRequirementCreateBidController extends GetxController {
           userType.value,
            zipCode.value,
           serviceId.value,
-          selectedServiceTypeId.value,
+          "1",
         googleMapService.latitude.toString(),
         googleMapService.longitude.toString(),
-          selectPropertyId.value??""
+        selectPropertyId.value??""
       );
       if (response['status'] == true) {
 

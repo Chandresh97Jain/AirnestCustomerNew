@@ -12,14 +12,15 @@ class ApiService {
   static late final BuildContext context;
 
   /// Airnest Local server
-  // static const baseURL = 'https://airnests.manageprojects.in/api/';
-  // static const imageURL = 'https://airnests.manageprojects.in/';
+  static const baseURL = 'https://airnests.manageprojects.in/api/';
+  static const imageURL = 'https://airnests.manageprojects.in/';
 
   /// Airnest live server
-  static const baseURL = 'https://admin.airnests.com/api/';
-  static const imageURL = 'https://admin.airnests.com/';
+  // static const baseURL = 'https://admin.airnests.com/api/';
+  // static const imageURL = 'https://admin.airnests.com/';
 
   static const String signUp = "auth/signUp";
+  static const String emailVerify = "auth/emailVerify";
   static const String signIn = "auth/signIn";
   static const String termsAndConditions = "termsAndConditions";
   static const String forgotPassword = "forgotPassword";
@@ -101,6 +102,34 @@ class ApiService {
     );
 
     print("Sign_Up ========= ${response.body}");
+
+    var convertDataToJson = jsonDecode(response.body);
+
+    return convertDataToJson;
+  }
+
+
+  Future verifyEmailApi(loginType, firstname, lastname, email, password, mobile,
+      deviceId, address, latitude, longitude) async {
+    final response = await http.post(
+      Uri.parse(baseURL + emailVerify),
+      body: ({
+        "login_type": loginType,
+        "firstname": firstname,
+        "lastname": lastname,
+        "email": email,
+        "password": password,
+        "mobile": mobile,
+        "device_id": deviceId,
+        "invitation_code": "", // optional
+        "role": "0", // 0 = Customer,1 = Cleaner,2 = Co-host
+        "address": address,
+        "latitude": latitude,
+        "longitude": longitude,
+      }),
+    );
+
+    print("verifyEmailApi ========= ${response.body}");
 
     var convertDataToJson = jsonDecode(response.body);
 
@@ -207,7 +236,34 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future otpVerify(email, otp) async {
+  // Future otpVerify(email, otp, loginType, firstname, lastname, password, mobile,
+  //     deviceId, address, latitude, longitude) async {
+  //   final response = await http.post(
+  //     Uri.parse(baseURL + matchOTP),
+  //     body: ({
+  //       'email': email,
+  //       'otp': otp,
+  //       "login_type": loginType,
+  //       "firstname": firstname,
+  //       "lastname": lastname,
+  //       "password": password,
+  //       "mobile": mobile,
+  //       "device_id": deviceId,
+  //       "invitation_code": "", // optional
+  //       "role": "0", // 0 = Customer,1 = Cleaner,2 = Co-host
+  //       "address": address,
+  //       "latitude": latitude,
+  //       "longitude": longitude,
+  //     }),
+  //   );
+
+  //   print("matchOTP ========= ${response.body}");
+
+  //   var convertDataToJson = jsonDecode(response.body);
+  //   return convertDataToJson;
+  // }
+
+  Future otpVerifyForgot(email, otp) async {
     final response = await http.post(
       Uri.parse(baseURL + matchOTP),
       body: ({
@@ -294,7 +350,8 @@ class ApiService {
     return convertDataToJson;
   }
 
-  Future findCleanerCoHostApi(userType, zipcode, serviceId) async {
+  Future findCleanerCoHostApi(
+      userType, address, serviceId, latitude, longitude) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
     final response = await http.post(
@@ -304,8 +361,10 @@ class ApiService {
       },
       body: ({
         "user_type": userType,
-        "zipcode": zipcode,
-        "service_id": serviceId
+        "address": address,
+        "service_id": serviceId,
+        "latitude": latitude,
+        "longitude": longitude,
       }),
     );
 
