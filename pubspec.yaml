@@ -139,7 +139,6 @@ flutter:
   assets:
      - assets/images/
      - assets/icons/
-     - assets/.env
      - assets/credentials/firebase_service_account.json
      - assets/images/customerSplash2.mp4
   #   - images/a_dot_ham.jpeg
