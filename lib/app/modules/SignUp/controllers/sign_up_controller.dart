@@ -46,6 +46,22 @@ class SignUpController extends GetxController {
   final deviceToken = ''.obs;
   final countryCode = ''.obs;
 
+  var selectedOption = "Select an option".obs;
+
+  // Options for the dropdown
+  final List<String> options = [
+    "Instagram",
+    "Facebook",
+    "LinkedIn",
+    "Google",
+    "Other"
+  ];
+
+  // Function to update the selected value
+  void updateSelected(String value) {
+    selectedOption.value = value;
+  }
+
   void togglePasswordVisibility() {
     obscureTextpassword.toggle();
     update();
@@ -345,12 +361,16 @@ class SignUpController extends GetxController {
         googleMapService.addressController.value.text,
         googleMapService.latitude.toString(),
         googleMapService.longitude.toString(),
+        selectedOption.value,
       );
 
       if (response['status'] == true) {
         ToastClass.showToast(
           '${response['message']}',
         );
+
+        print("selectedOption---- ${selectedOption.value}");
+        print("otp---- ${response['otp']}");
 
         // Authentication with email and password
 
@@ -370,6 +390,7 @@ class SignUpController extends GetxController {
           'long': googleMapService.longitude.toString(),
           'deviceToken': deviceToken.value,
           "loginType": "app",
+          "platform_by": selectedOption.value,
         };
 
         Get.toNamed(Routes.SIGN_UP_VERIFY_OTP, parameters: data);
@@ -428,7 +449,8 @@ class SignUpController extends GetxController {
             "auth_token": response['token'].toString(),
             "first_name": firstname.toString() ?? "",
           };
-          Get.offAllNamed(Routes.SIGN_UP_BASIC_DETAILS_SCREEN,parameters: data);
+          Get.offAllNamed(Routes.SIGN_UP_BASIC_DETAILS_SCREEN,
+              parameters: data);
           log("new social user");
         } else {
           Get.offAllNamed(Routes.DESHBOARD);

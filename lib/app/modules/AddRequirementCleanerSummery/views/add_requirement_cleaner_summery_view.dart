@@ -8,6 +8,7 @@ import 'package:power_maids/Utils/global_text.dart';
 import 'package:power_maids/Utils/loader.dart';
 import 'package:power_maids/app/modules/AddRequirementCleaner/controllers/add_requirement_cleaner_controller.dart';
 import 'package:power_maids/app/modules/AddRequirementCleanerSummery/controllers/add_requirement_cleaner_summery_controller.dart';
+import 'package:power_maids/app/modules/ExtraworkAddScreen/controllers/extrawork_add_screen_controller.dart';
 import 'package:power_maids/app/modules/ExtraworkAddScreen/priceforairbnb_dynamic_ui.dart';
 
 
@@ -17,6 +18,7 @@ class AddRequirementCleanerSummeryView extends GetView<AddRequirementCleanerSumm
   @override
   Widget build(BuildContext context) {
     AddRequirementCleanerController addRequirementCleanerController =  Get.put(AddRequirementCleanerController());
+    ExtraworkAddScreenController extraworkAddScreenController =  Get.put(ExtraworkAddScreenController());
     return Scaffold(
         backgroundColor: AppStyles.backgroundColor,
         appBar: AppBar(
@@ -255,7 +257,7 @@ class AddRequirementCleanerSummeryView extends GetView<AddRequirementCleanerSumm
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Textwidget(
-                                      text: "Supplies ",
+                                      text: "Supplies",
                                       fontSize: 15,
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -352,10 +354,11 @@ class AddRequirementCleanerSummeryView extends GetView<AddRequirementCleanerSumm
                               maxLines: 100,
                               text: addRequirementCleanerController.needsTextController.text,
                               fontSize: 13,
-                            )),
+                            )
+                        ),
                       ],
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(height: 20,),
 
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -505,7 +508,83 @@ class AddRequirementCleanerSummeryView extends GetView<AddRequirementCleanerSumm
                     const Divider(
                       height: 10,
                     ),
-                    const SizedBox(height: 10,),
+
+
+                    /// Extra Works
+                    Textwidget(
+                      text: "Some Extra Works",
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    ListView.builder(
+                        itemCount: extraworkAddScreenController.extraServicesId.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (buildContext, index){
+
+                          return  Padding(
+                            padding: const EdgeInsets.only(top: 10,left: 12, right: 12, bottom: 5),
+                            child:  Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Textwidget(
+                                  text: extraworkAddScreenController.extraServicesTitle[index],
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                Textwidget(
+                                  text: "\$${extraworkAddScreenController.extraServicesPrice[index]}",
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ],
+                            )
+                          );
+                        }
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    const Divider(
+                      height: 10,
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Textwidget(
+                          text: "Total Price",
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                        ),
+
+                        if(addRequirementCleanerController.serviceId.value == "1" || addRequirementCleanerController.serviceId.value == "2" ||
+                            addRequirementCleanerController.serviceId.value == "4")
+                          Textwidget(
+                            text: "\$${addRequirementCleanerController.totalPayment.value}",
+                            fontWeight: FontWeight.w700,
+                            fontSize: 15,
+                          )
+                        else if(addRequirementCleanerController.serviceId.value == "3" || addRequirementCleanerController.serviceId.value == "6")
+                          Textwidget(
+                            text: "\$${addRequirementCleanerController.totalSqftPrice.value}",
+                            fontWeight: FontWeight.w700,
+                            fontSize: 15,
+                          ) // suqer feet
+                        else
+                          Textwidget(
+                            text: "\$${addRequirementCleanerController.totalHourlyPrice.value}",
+                            fontWeight: FontWeight.w700,
+                            fontSize: 15,
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 50,),
                     // Textwidget(
                     //   maxLines: 50,
                     //   text: "Some extras works",

@@ -549,9 +549,7 @@ class AddRequirementCleanerView
                       height: 12,
                     ),
 
-                    if (controller.serviceId.value == "1" ||
-                        controller.serviceId.value == "2" ||
-                        controller.serviceId.value == "4")
+                    if (controller.serviceId.value == "1" || controller.serviceId.value == "2" || controller.serviceId.value == "4")
                       controller.isLoading.isTrue
                           ? ShowLoader.isLoadingProgress(
                               controller.isLoading.value)
@@ -584,34 +582,20 @@ class AddRequirementCleanerView
                                                     Colors.transparent,
                                                 splashColor: Colors.transparent,
                                                 onTap: () {
-                                                  controller
-                                                      .selectServiceStandardDeep
-                                                      .value = index.toString();
-                                                  controller.bedroomQty.value =
-                                                      0;
-                                                  controller.bathroomQty.value =
-                                                      0;
-                                                  controller.perHourQty.value =
-                                                      0;
+                                                  controller.selectServiceStandardDeep.value = index.toString();
+                                                  controller.bedroomQty.value = 0;
+                                                  controller.bathroomQty.value = 0;
+                                                  controller.perHourQty.value = 0;
 
-                                                  controller.serviceLableId
-                                                      .clear();
-                                                  controller.serviceTitleList
-                                                      .clear();
-                                                  controller.serviceQtyList
-                                                      .clear();
-                                                  controller
-                                                      .serviceTotalPriceList
-                                                      .clear();
-                                                  controller.serviceActualPrice
-                                                      .clear();
+                                                  controller.serviceLableId.clear();
+                                                  controller.serviceTitleList.clear();
+                                                  controller.serviceQtyList.clear();
+                                                  controller.serviceTotalPriceList.clear();
+                                                  controller.serviceActualPrice.clear();
                                                 },
                                                 child: Row(
                                                   children: [
-                                                    Obx(() => controller
-                                                                .selectServiceStandardDeep
-                                                                .value ==
-                                                            index.toString()
+                                                    Obx(() => controller.selectServiceStandardDeep.value == index.toString()
                                                         ? Image.asset(
                                                             "assets/icons/graycirculefill.png",
                                                             height: 25,
@@ -639,32 +623,23 @@ class AddRequirementCleanerView
                                       height: 10,
                                     ),
 
-                                    Obx(() => controller
-                                                .selectServiceStandardDeep
-                                                .value ==
-                                            "0"
+                                    Obx(() => controller.selectServiceStandardDeep.value == "0"
                                         ? ListView.builder(
-                                            itemCount:
-                                                controller.priceLabels.length,
+                                            itemCount: controller.priceLabels.length,
                                             shrinkWrap: true,
                                             physics:
                                                 const NeverScrollableScrollPhysics(),
                                             itemBuilder: (buildContext, index) {
-                                              var lable =
-                                                  controller.priceLabels[index];
+                                              var lable = controller.priceLabels[index];
 
                                               return Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                    MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-                                                      lable.text ==
-                                                              "Per Bedroom"
+                                                      lable.text == "Per Bedroom"
                                                           ? Image.asset(
                                                               "assets/icons/bedroom.png",
                                                               scale: 4,
@@ -689,7 +664,7 @@ class AddRequirementCleanerView
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Textwidget(
+                                                          Textwidget (
                                                             text: lable.text,
                                                             fontSize: 15,
                                                             fontWeight:
@@ -721,25 +696,15 @@ class AddRequirementCleanerView
                                                               ),
                                                               Obx(() =>
                                                                   Textwidget(
-                                                                    textscalefector:
-                                                                        1,
-                                                                    text: index ==
-                                                                            0
-                                                                        ? controller
-                                                                            .bedroomQty
-                                                                            .value
-                                                                            .toString()
-                                                                        : index ==
-                                                                                1
-                                                                            ? controller.bathroomQty.value.toString()
-                                                                            : controller.perHourQty.value.toString(),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    color: AppStyles
-                                                                        .appThemeColor,
-                                                                    fontSize:
-                                                                        12,
+                                                                    textscalefector: 1,
+                                                                    text: index == 0
+                                                                        ? controller.bedroomQty.value.toString()
+                                                                        : index == 1
+                                                                        ? controller.bathroomQty.value.toString()
+                                                                        : controller.perHourQty.value.toString(),
+                                                                    fontWeight: FontWeight.w700,
+                                                                    color: AppStyles.appThemeColor,
+                                                                    fontSize: 12,
                                                                   ))
                                                             ],
                                                           )
@@ -761,76 +726,23 @@ class AddRequirementCleanerView
                                                           child: IconButton(
                                                               onPressed: () {
                                                                 // Decrement quantities and prices based on the selected index
-                                                                if (index ==
-                                                                    0) {
-                                                                  if (controller
-                                                                          .bedroomQty
-                                                                          .value >
-                                                                      0) {
-                                                                    controller
-                                                                        .bedroomQty
-                                                                        .value--;
-                                                                    int total = int.parse(lable
-                                                                            .standardPrice) *
-                                                                        controller
-                                                                            .bedroomQty
-                                                                            .value;
-                                                                    updateServiceListDecrement(
-                                                                        index,
-                                                                        lable,
-                                                                        controller
-                                                                            .bedroomQty
-                                                                            .value,
-                                                                        total,
-                                                                        lable
-                                                                            .standardPrice);
+                                                                if (index == 0) {
+                                                                  if (controller.bedroomQty.value > 0) {
+                                                                    controller.bedroomQty.value--;
+                                                                    int total = int.parse(lable.standardPrice) * controller.bedroomQty.value;
+                                                                    updateServiceListDecrement(index, lable, controller.bedroomQty.value,total,lable.standardPrice);
                                                                   }
-                                                                } else if (index ==
-                                                                    1) {
-                                                                  if (controller
-                                                                          .bathroomQty
-                                                                          .value >
-                                                                      0) {
-                                                                    controller
-                                                                        .bathroomQty
-                                                                        .value--;
-                                                                    int total = int.parse(lable
-                                                                            .standardPrice) *
-                                                                        controller
-                                                                            .bathroomQty
-                                                                            .value;
-                                                                    updateServiceListDecrement(
-                                                                        index,
-                                                                        lable,
-                                                                        controller
-                                                                            .bathroomQty
-                                                                            .value,
-                                                                        total,
-                                                                        lable
-                                                                            .standardPrice);
+                                                                } else if (index == 1) {
+                                                                  if (controller.bathroomQty.value > 0) {
+                                                                    controller.bathroomQty.value--;
+                                                                    int total = int.parse(lable.standardPrice) * controller.bathroomQty.value;
+                                                                    updateServiceListDecrement(index, lable, controller.bathroomQty.value, total, lable.standardPrice);
                                                                   }
                                                                 } else {
-                                                                  if (controller
-                                                                          .perHourQty
-                                                                          .value >
-                                                                      0) {
-                                                                    controller
-                                                                        .perHourQty
-                                                                        .value--;
-                                                                    int total = int.parse(lable
-                                                                            .standardPrice) *
-                                                                        controller
-                                                                            .perHourQty
-                                                                            .value;
-                                                                    updateServiceListDecrement(
-                                                                        index,
-                                                                        lable,
-                                                                        controller
-                                                                            .perHourQty
-                                                                            .value,
-                                                                        total,
-                                                                        lable
-                                                                            .standardPrice);
+                                                                  if (controller.perHourQty.value > 0) {
+                                                                    controller.perHourQty.value--;
+                                                                    int total = int.parse(lable.standardPrice) * controller.perHourQty.value;
+                                                                    updateServiceListDecrement(index, lable, controller.perHourQty.value, total, lable.standardPrice);
                                                                   }
                                                                 }
                                                               },
@@ -869,31 +781,18 @@ class AddRequirementCleanerView
                                                                     .white,
                                                               ))),
                                                       SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width /
-                                                              10,
+                                                          width: MediaQuery.of(context).size.width / 10,
                                                           child: Center(
                                                               child: Obx(() =>
                                                                   Textwidget(
-                                                                    textscalefector:
-                                                                        1,
-                                                                    text: index ==
-                                                                            0
-                                                                        ? controller
-                                                                            .bedroomQty
-                                                                            .value
-                                                                            .toString()
-                                                                        : index ==
-                                                                                1
-                                                                            ? controller.bathroomQty.value.toString()
-                                                                            : controller.perHourQty.value.toString(),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    fontSize:
-                                                                        20,
+                                                                    textscalefector: 1,
+                                                                    text: index == 0
+                                                                        ? controller.bedroomQty.value.toString()
+                                                                        : index == 1
+                                                                        ? controller.bathroomQty.value.toString()
+                                                                        : controller.perHourQty.value.toString(),
+                                                                    fontWeight: FontWeight.w700,
+                                                                    fontSize: 20,
                                                                   )))),
                                                       Card(
                                                           shape:
@@ -906,65 +805,18 @@ class AddRequirementCleanerView
                                                               .appThemeColor,
                                                           child: IconButton(
                                                               onPressed: () {
-                                                                if (index ==
-                                                                    0) {
-                                                                  controller
-                                                                      .bedroomQty
-                                                                      .value++;
-                                                                  int total = int
-                                                                          .parse(lable
-                                                                              .standardPrice) *
-                                                                      controller
-                                                                          .bedroomQty
-                                                                          .value;
-                                                                  updateServiceListIncrement(
-                                                                      index,
-                                                                      lable,
-                                                                      controller
-                                                                          .bedroomQty
-                                                                          .value,
-                                                                      total,
-                                                                      lable
-                                                                          .standardPrice);
-                                                                } else if (index ==
-                                                                    1) {
-                                                                  controller
-                                                                      .bathroomQty
-                                                                      .value++;
-                                                                  int total = int
-                                                                          .parse(lable
-                                                                              .standardPrice) *
-                                                                      controller
-                                                                          .bathroomQty
-                                                                          .value;
-                                                                  updateServiceListIncrement(
-                                                                      index,
-                                                                      lable,
-                                                                      controller
-                                                                          .bathroomQty
-                                                                          .value,
-                                                                      total,
-                                                                      lable
-                                                                          .standardPrice);
+                                                                if (index == 0) {
+                                                                  controller.bedroomQty.value++;
+                                                                  int total = int.parse(lable.standardPrice) * controller.bedroomQty.value;
+                                                                  updateServiceListIncrement(index, lable, controller.bedroomQty.value,total, lable.standardPrice);
+                                                                } else if (index == 1) {
+                                                                  controller.bathroomQty.value++;
+                                                                  int total = int.parse(lable.standardPrice) * controller.bathroomQty.value;
+                                                                  updateServiceListIncrement(index, lable, controller.bathroomQty.value, total, lable.standardPrice);
                                                                 } else {
-                                                                  controller
-                                                                      .perHourQty
-                                                                      .value++;
-                                                                  int total = int
-                                                                          .parse(lable
-                                                                              .standardPrice) *
-                                                                      controller
-                                                                          .perHourQty
-                                                                          .value;
-                                                                  updateServiceListIncrement(
-                                                                      index,
-                                                                      lable,
-                                                                      controller
-                                                                          .perHourQty
-                                                                          .value,
-                                                                      total,
-                                                                      lable
-                                                                          .standardPrice);
+                                                                  controller.perHourQty.value++;
+                                                                  int total = int.parse(lable.standardPrice) * controller.perHourQty.value;
+                                                                  updateServiceListIncrement(index, lable, controller.perHourQty.value, total, lable.standardPrice);
                                                                 }
                                                               },
                                                               // onPressed: () {
@@ -1000,49 +852,27 @@ class AddRequirementCleanerView
                                               );
                                             })
                                         : ListView.builder(
-                                            itemCount:
-                                                controller.priceLabels.length,
+                                            itemCount: controller.priceLabels.length,
                                             shrinkWrap: true,
-                                            physics:
-                                                const NeverScrollableScrollPhysics(),
+                                            physics: const NeverScrollableScrollPhysics(),
                                             itemBuilder: (buildContext, index) {
-                                              var lable =
-                                                  controller.priceLabels[index];
+                                              var lable = controller.priceLabels[index];
                                               return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-                                                      lable.text ==
-                                                              "Per Bedroom"
-                                                          ? Image.asset(
-                                                              "assets/icons/bedroom.png",
-                                                              scale: 4,
-                                                            )
-                                                          : lable.text ==
-                                                                  "Per Bathroom"
-                                                              ? Image.asset(
-                                                                  "assets/icons/bathroom.png",
-                                                                  scale: 4,
-                                                                )
-                                                              : Image.asset(
-                                                                  "assets/icons/price.png",
-                                                                  height: 20,
-                                                                  color: AppStyles
-                                                                      .appThemeColor,
-                                                                ),
+                                                      lable.text == "Per Bedroom"
+                                                          ? Image.asset("assets/icons/bedroom.png", scale: 4,)
+                                                          : lable.text == "Per Bathroom"
+                                                              ? Image.asset("assets/icons/bathroom.png", scale: 4,)
+                                                              : Image.asset("assets/icons/price.png", height: 20, color: AppStyles.appThemeColor,),
                                                       const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Textwidget(
                                                             text: lable.text,
@@ -1053,11 +883,9 @@ class AddRequirementCleanerView
                                                           Row(
                                                             children: [
                                                               Textwidget(
-                                                                text:
-                                                                    "\$${lable.deepPrice}",
+                                                                text: "\$${lable.deepPrice}",
                                                                 fontSize: 12,
-                                                                color: AppStyles
-                                                                    .appThemeColor,
+                                                                color: AppStyles .appThemeColor,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w700,
@@ -1076,25 +904,15 @@ class AddRequirementCleanerView
                                                               ),
                                                               Obx(() =>
                                                                   Textwidget(
-                                                                    textscalefector:
-                                                                        1,
-                                                                    text: index ==
-                                                                            0
-                                                                        ? controller
-                                                                            .bedroomQty
-                                                                            .value
-                                                                            .toString()
-                                                                        : index ==
-                                                                                1
-                                                                            ? controller.bathroomQty.value.toString()
-                                                                            : controller.perHourQty.value.toString(),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    color: AppStyles
-                                                                        .appThemeColor,
-                                                                    fontSize:
-                                                                        12,
+                                                                    textscalefector: 1,
+                                                                    text: index == 0
+                                                                        ? controller.bedroomQty.value.toString()
+                                                                        : index == 1
+                                                                        ? controller.bathroomQty.value.toString()
+                                                                        : controller.perHourQty.value.toString(),
+                                                                    fontWeight: FontWeight.w700,
+                                                                    color: AppStyles.appThemeColor,
+                                                                    fontSize: 12,
                                                                   ))
                                                             ],
                                                           )
@@ -1105,87 +923,29 @@ class AddRequirementCleanerView
                                                   Row(
                                                     children: [
                                                       Card(
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              3)),
-                                                          color: AppStyles
-                                                              .Blacklightbuttoncolor,
+                                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+                                                          color: AppStyles.Blacklightbuttoncolor,
                                                           child: IconButton(
                                                               onPressed: () {
                                                                 // Decrement quantities and prices based on the selected index
-                                                                if (index ==
-                                                                    0) {
-                                                                  if (controller
-                                                                          .bedroomQty
-                                                                          .value >
-                                                                      0) {
-                                                                    controller
-                                                                        .bedroomQty
-                                                                        .value--;
-                                                                    int total = int.parse(lable
-                                                                            .deepPrice) *
-                                                                        controller
-                                                                            .bedroomQty
-                                                                            .value;
-                                                                    updateServiceListDecrement(
-                                                                        index,
-                                                                        lable,
-                                                                        controller
-                                                                            .bedroomQty
-                                                                            .value,
-                                                                        total,
-                                                                        lable
-                                                                            .deepPrice);
+                                                                if (index == 0) {
+                                                                  if (controller.bedroomQty.value > 0) {
+                                                                    controller.bedroomQty.value--;
+                                                                    int total = int.parse(lable.deepPrice) * controller.bedroomQty.value;
+                                                                    updateServiceListDecrement(index, lable, controller.bedroomQty.value, total, lable.deepPrice);
                                                                   }
-                                                                } else if (index ==
-                                                                    1) {
-                                                                  if (controller
-                                                                          .bathroomQty
-                                                                          .value >
-                                                                      0) {
-                                                                    controller
-                                                                        .bathroomQty
-                                                                        .value--;
-                                                                    int total = int.parse(lable
-                                                                            .deepPrice) *
-                                                                        controller
-                                                                            .bathroomQty
-                                                                            .value;
-                                                                    updateServiceListDecrement(
-                                                                        index,
-                                                                        lable,
-                                                                        controller
-                                                                            .bathroomQty
-                                                                            .value,
-                                                                        total,
-                                                                        lable
-                                                                            .deepPrice);
+                                                                } else if (index == 1) {
+                                                                  if (controller.bathroomQty.value > 0) {
+                                                                    controller.bathroomQty.value--;
+                                                                    int total = int.parse(lable.deepPrice) * controller.bathroomQty.value;
+                                                                    updateServiceListDecrement(index, lable, controller.bathroomQty.value, total, lable.deepPrice);
                                                                   }
                                                                 } else {
-                                                                  if (controller
-                                                                          .perHourQty
-                                                                          .value >
-                                                                      0) {
-                                                                    controller
-                                                                        .perHourQty
-                                                                        .value--;
-                                                                    int total = int.parse(lable
-                                                                            .deepPrice) *
-                                                                        controller
-                                                                            .perHourQty
-                                                                            .value;
-                                                                    updateServiceListDecrement(
-                                                                        index,
-                                                                        lable,
-                                                                        controller
-                                                                            .perHourQty
-                                                                            .value,
-                                                                        total,
-                                                                        lable
-                                                                            .deepPrice);
+                                                                  if (controller.perHourQty.value > 0) {
+                                                                    controller.perHourQty.value--;
+                                                                    int total = int.parse(lable.deepPrice) * controller.perHourQty.value;
+                                                                    updateServiceListDecrement(index, lable, controller.perHourQty.value, total, lable
+                                                                        .deepPrice);
                                                                   }
                                                                 }
                                                               },
@@ -1196,32 +956,20 @@ class AddRequirementCleanerView
                                                                     .white,
                                                               ))),
                                                       SizedBox(
-                                                          width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width /
-                                                              10,
+                                                          width: MediaQuery.of(context).size.width / 10,
                                                           child: Center(
                                                               child: Obx(() =>
                                                                   Textwidget(
-                                                                    textscalefector:
-                                                                        1,
-                                                                    text: index ==
-                                                                            0
-                                                                        ? controller
-                                                                            .bedroomQty
-                                                                            .value
-                                                                            .toString()
-                                                                        : index ==
-                                                                                1
-                                                                            ? controller.bathroomQty.value.toString()
-                                                                            : controller.perHourQty.value.toString(),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                    fontSize:
-                                                                        20,
-                                                                  )))),
+                                                                    textscalefector: 1,
+                                                                    text: index == 0
+                                                                        ? controller.bedroomQty.value.toString()
+                                                                        : index == 1
+                                                                        ? controller.bathroomQty.value.toString()
+                                                                        : controller.perHourQty.value.toString(),
+                                                                    fontWeight: FontWeight.w700,
+                                                                    fontSize: 20,
+                                                                  )
+                                                              ))),
                                                       Card(
                                                           shape:
                                                               RoundedRectangleBorder(
@@ -1233,65 +981,18 @@ class AddRequirementCleanerView
                                                               .appThemeColor,
                                                           child: IconButton(
                                                               onPressed: () {
-                                                                if (index ==
-                                                                    0) {
-                                                                  controller
-                                                                      .bedroomQty
-                                                                      .value++;
-                                                                  int total = int
-                                                                          .parse(lable
-                                                                              .deepPrice) *
-                                                                      controller
-                                                                          .bedroomQty
-                                                                          .value;
-                                                                  updateServiceListIncrement(
-                                                                      index,
-                                                                      lable,
-                                                                      controller
-                                                                          .bedroomQty
-                                                                          .value,
-                                                                      total,
-                                                                      lable
-                                                                          .deepPrice);
-                                                                } else if (index ==
-                                                                    1) {
-                                                                  controller
-                                                                      .bathroomQty
-                                                                      .value++;
-                                                                  int total = int
-                                                                          .parse(lable
-                                                                              .deepPrice) *
-                                                                      controller
-                                                                          .bathroomQty
-                                                                          .value;
-                                                                  updateServiceListIncrement(
-                                                                      index,
-                                                                      lable,
-                                                                      controller
-                                                                          .bathroomQty
-                                                                          .value,
-                                                                      total,
-                                                                      lable
-                                                                          .deepPrice);
+                                                                if (index == 0) {
+                                                                  controller.bedroomQty.value++;
+                                                                  int total = int.parse(lable.deepPrice) * controller.bedroomQty.value;
+                                                                  updateServiceListIncrement(index, lable, controller.bedroomQty.value, total, lable.deepPrice);
+                                                                } else if (index == 1) {
+                                                                  controller.bathroomQty.value++;
+                                                                  int total = int.parse(lable.deepPrice) * controller.bathroomQty.value;
+                                                                  updateServiceListIncrement(index, lable, controller.bathroomQty.value, total, lable.deepPrice);
                                                                 } else {
-                                                                  controller
-                                                                      .perHourQty
-                                                                      .value++;
-                                                                  int total = int
-                                                                          .parse(lable
-                                                                              .deepPrice) *
-                                                                      controller
-                                                                          .perHourQty
-                                                                          .value;
-                                                                  updateServiceListIncrement(
-                                                                      index,
-                                                                      lable,
-                                                                      controller
-                                                                          .perHourQty
-                                                                          .value,
-                                                                      total,
-                                                                      lable
-                                                                          .deepPrice);
+                                                                  controller.perHourQty.value++;
+                                                                  int total = int.parse(lable.deepPrice) * controller.perHourQty.value;
+                                                                  updateServiceListIncrement(index, lable, controller.perHourQty.value, total, lable.deepPrice);
                                                                 }
                                                               },
                                                               icon: const Icon(
@@ -1533,8 +1234,7 @@ class AddRequirementCleanerView
                                     ),
                                   ],
                                 )
-                    else if (controller.serviceId.value == "3" ||
-                        controller.serviceId.value == "6")
+                    else if (controller.serviceId.value == "3" || controller.serviceId.value == "6")
                       controller.isLoading.isTrue
                           ? ShowLoader.isLoadingProgress(
                               controller.isLoading.value)

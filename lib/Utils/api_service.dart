@@ -82,7 +82,7 @@ class ApiService {
   static const String removePropertyEndpoint = 'remove-property';
 
   Future signUpApi(loginType, firstname, lastname, email, password, mobile,
-      deviceId, address, latitude, longitude) async {
+      deviceId, address, latitude, longitude, platformBy) async {
     final response = await http.post(
       Uri.parse(baseURL + signUp),
       body: ({
@@ -98,6 +98,7 @@ class ApiService {
         "address": address,
         "latitude": latitude,
         "longitude": longitude,
+        "platform_by": platformBy,
       }),
     );
 
@@ -108,9 +109,8 @@ class ApiService {
     return convertDataToJson;
   }
 
-
   Future verifyEmailApi(loginType, firstname, lastname, email, password, mobile,
-      deviceId, address, latitude, longitude) async {
+      deviceId, address, latitude, longitude, platformBy) async {
     final response = await http.post(
       Uri.parse(baseURL + emailVerify),
       body: ({
@@ -125,7 +125,7 @@ class ApiService {
         "role": "0", // 0 = Customer,1 = Cleaner,2 = Co-host
         "address": address,
         "latitude": latitude,
-        "longitude": longitude,
+        "platform_by": platformBy,
       }),
     );
 
@@ -582,7 +582,11 @@ class ApiService {
       cleanerId,
       washTowels,
       cleanerSupplies,
-      propertyId) async {
+      propertyId,
+      extraServiceID,
+      extraServiceTitle,
+      extraServiceQty,
+      extraServicePrice) async {
     final prefs = await SharedPreferences.getInstance();
     var authToken = prefs.getString('auth_token');
     final response = await http.post(
@@ -601,7 +605,6 @@ class ApiService {
         "description": description, //  0/1
         "zipcode": zipcode,
         "services_id": servicesId,
-
         "service_label_id": serviceLabelId,
         "service_label_title": serviceLabelTitle,
         "service_label_qty": serviceLabelQty,
@@ -611,6 +614,11 @@ class ApiService {
         "cleaner_needs_to_wash_and_dry_linen_and_towels": washTowels,
         "i_provide_cleaning_supplies": cleanerSupplies,
         "property_id": propertyId,
+
+        "extra_service_label_id": extraServiceID,
+        "extra_service_label_title": extraServiceTitle,
+        "extra_service_label_qty": extraServiceQty,
+        "extra_service_label_unit_price": extraServicePrice,
       }),
     );
 

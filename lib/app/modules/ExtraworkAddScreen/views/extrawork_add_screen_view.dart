@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:power_maids/Utils/appbar_with_backbutton.dart';
 import 'package:power_maids/Utils/button_ui_global.dart';
 import 'package:power_maids/Utils/color_style.dart';
@@ -66,7 +67,10 @@ class ExtraworkAddScreenView extends GetView<ExtraworkAddScreenController> {
 
                   return InkWell(
                     onTap: () {
-                      controller.toggleItemSelection(extraSlist.id.toString());
+
+                      controller.toggleItemSelection(extraSlist.id.toString(),extraSlist.title,
+                          extraSlist.price);
+
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -298,7 +302,23 @@ class ExtraworkAddScreenView extends GetView<ExtraworkAddScreenController> {
             text: "Next",
             onPressed: () {
 
-              log("Total price ---- - - - >>> ${addRequirementCleanerController.totalPayment}");
+              var total = 0;  // Initialize total to 0
+
+              for (int i = 0; i < controller.extraServicesPrice.length; i++) {
+                total += int.parse(controller.extraServicesPrice[i]);
+              }
+
+              if(controller.serviceId.value == "1" || controller.serviceId.value == "2" || controller.serviceId.value == "4"){
+                int grandTotal = int.parse(addRequirementCleanerController.totalPayment.value)+total;
+                 addRequirementCleanerController.totalPayment.value = grandTotal.toString();
+              }else if(controller.serviceId.value == "3" || controller.serviceId.value == "6"){
+                int grandTotal = int.parse(addRequirementCleanerController.totalSqftPrice.value)+total;
+                addRequirementCleanerController.totalSqftPrice.value = grandTotal.toString();
+              }else{
+                int grandTotal = int.parse(addRequirementCleanerController.totalHourlyPrice.value)+total;
+                addRequirementCleanerController.totalHourlyPrice.value = grandTotal.toString();
+              }
+
 
               var data = {
                 // "title": controller.title.toString(),

@@ -190,7 +190,6 @@ class BookingSummaryController extends GetxController {
     } finally {
       isLoadingAddCard(false);
       update();
-
     }
   }
 

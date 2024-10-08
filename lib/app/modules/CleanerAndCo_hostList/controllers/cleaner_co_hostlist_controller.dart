@@ -37,8 +37,8 @@ class CleanerAndCoHostListController extends GetxController {
     addresss.value = Get.parameters['address'] ?? "";
     serviceId.value = Get.parameters['service_id'] ?? "";
     serviceName.value = Get.parameters['service_name'] ?? "";
-    serviceName.value = Get.parameters['lat'] ?? "";
-    serviceName.value = Get.parameters['long'] ?? "";
+    lati.value = Get.parameters['lat'] ?? "";
+    long.value = Get.parameters['long'] ?? "";
 
     findCleanerCoHostApi(userType.value, addresss.value, serviceId.value,
         lati.value, long.value);

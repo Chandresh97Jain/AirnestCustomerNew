@@ -198,9 +198,6 @@ class SignUpView extends GetView<SignUpController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
                         Obx(() => TextFieldDesigned(
                             controller: controller.passwordTextController,
                             obscureText: controller.obscureTextpassword.value,
@@ -230,7 +227,10 @@ class SignUpView extends GetView<SignUpController> {
                                 "assets/icons/view.png",
                                 height: 25,
                               )),
-                            ))),
+                            )
+                        )
+                        ),
+
                         const SizedBox(
                           height: 10,
                         ),
@@ -288,6 +288,46 @@ class SignUpView extends GetView<SignUpController> {
                         const SizedBox(
                           height: 10,
                         ),
+                        Obx(() {
+                          return DropdownButton<String>(
+                            value: controller.selectedOption.value == "Select an option"
+                                ? null
+                                : controller.selectedOption.value,
+                            hint: Textwidget(
+                              text: "How did you learn about us?",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15,
+                              color: Colors.black,
+                            ),
+                            iconEnabledColor: AppStyles.appThemeColor,
+                            iconDisabledColor: AppStyles.appThemeColor,
+                            style: const TextStyle(
+                                overflow: TextOverflow.ellipsis,
+                                fontFamily: "JosefinSans",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                //color: Theme.of(context).iconTheme.color
+                                // decorationColor:decorationColor,
+                                // decoration: decoration,
+                                color: Colors.black
+                            ),
+
+                            isExpanded: true,
+                            items: controller.options.map((String option) {
+                              return DropdownMenuItem<String>(
+                                enabled: true,
+                                value: option,
+                                child: Text(option),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              if (value != null) {
+                                controller.updateSelected(value);
+                              }
+                            },
+                            underline: SizedBox(), // This removes the underline
+                          );
+                        }),
                         const SizedBox(
                           height: 10,
                         ),
@@ -378,9 +418,7 @@ class SignUpView extends GetView<SignUpController> {
                           color: AppStyles.appThemeColor,
                           TextColor: AppStyles.backgroundColor,
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+
                       ],
                     ),
                   ),

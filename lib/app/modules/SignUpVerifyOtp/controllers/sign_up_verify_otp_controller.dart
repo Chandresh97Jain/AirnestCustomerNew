@@ -29,7 +29,7 @@ class SignUpVerifyOtpController extends GetxController {
   final long = "".obs;
   final deviceToken = "".obs;
   final loginType = "".obs;
-
+  final platfromType = "".obs;
   final isLoading = false.obs;
   final isLoadingg = false.obs;
 
@@ -77,6 +77,7 @@ class SignUpVerifyOtpController extends GetxController {
     lat.value = Get.parameters['lat']!;
     long.value = Get.parameters['long']!;
     loginType.value = Get.parameters['loginType']!;
+    platfromType.value = Get.parameters['platform_by']!;
 
     print("dialCode ----${dialCode}");
     print("deviceToken ----${deviceToken}");
@@ -107,6 +108,7 @@ class SignUpVerifyOtpController extends GetxController {
         address.value,
         lat.value,
         long.value,
+        platfromType.value,
       );
 
       if (response['status'] == true) {
@@ -152,17 +154,17 @@ class SignUpVerifyOtpController extends GetxController {
       isLoading(true);
 
       var response = await ApiService().verifyEmailApi(
-        email.value,
-        loginType.value,
-        firstName.value,
-        lastName.value,
-        password.value,
-        mobile.value,
-        deviceToken.value,
-        address.value,
-        lat.value,
-        long.value,
-      );
+          email.value,
+          loginType.value,
+          firstName.value,
+          lastName.value,
+          password.value,
+          mobile.value,
+          deviceToken.value,
+          address.value,
+          lat.value,
+          long.value,
+          platfromType.value);
 
       if (response['status'] == true) {
         ToastClass.showToast(

@@ -6,14 +6,12 @@ import 'package:power_maids/Utils/ShowToast.dart';
 import 'package:power_maids/Utils/api_service.dart';
 import 'package:power_maids/app/modules/CreateBidForCleanerAndCohost/model/service_list_model.dart';
 
-
 class SelectServicesController extends GetxController {
   //TODO: Implement SelectServicesController
   final TextEditingController zipTextController = TextEditingController();
   final count = 0.obs;
   final title = "".obs;
   final id = "".obs;
-
 
   final GoogleMapServiceController googleMapService =
       Get.put(GoogleMapServiceController());
@@ -26,10 +24,11 @@ class SelectServicesController extends GetxController {
 
   @override
   void onInit() {
-    title.value = Get.parameters['title']??"";
-    id.value = Get.parameters['id']??"";
-    userType.value = Get.parameters['user_type']??"";
-    nextScreendis.value = Get.parameters['nextScreendis']??"";
+    googleMapService.addressController.value.text = "";
+    title.value = Get.parameters['title'] ?? "";
+    id.value = Get.parameters['id'] ?? "";
+    userType.value = Get.parameters['user_type'] ?? "";
+    nextScreendis.value = Get.parameters['nextScreendis'] ?? "";
     serviceListApi(userType.value);
     log("user_type -- ${userType.value}");
 
@@ -45,21 +44,22 @@ class SelectServicesController extends GetxController {
       var response = await ApiService().serviceListApi(serviceFor);
 
       if (response['status'] == true) {
-
         List dataList = response['data'].toList();
-        serviceList.value = dataList.map((json) => ServicesListModel.fromJson(json)).toList();
+        serviceList.value =
+            dataList.map((json) => ServicesListModel.fromJson(json)).toList();
 
         update();
         isLoading(false);
       } else if (response['status'] == false) {
-        ToastClass.showToast('${response['message']}',);
+        ToastClass.showToast(
+          '${response['message']}',
+        );
         isLoading(false);
         update();
       }
     } finally {
       isLoading(false);
       update();
-
     }
   }
 

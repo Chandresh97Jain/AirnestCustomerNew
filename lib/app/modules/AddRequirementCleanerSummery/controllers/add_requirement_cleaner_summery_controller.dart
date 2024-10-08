@@ -63,11 +63,7 @@ class AddRequirementCleanerSummeryController extends GetxController {
       String cleanedInput = titlee.substring(1, titlee.length - 1);
 
       // Split the string by commas and trim each item, then add double quotes
-      List<String> result = cleanedInput
-          .split(',')
-          .map((item) => '"${item.trim()}"')
-          .toList();
-
+      List<String> result = cleanedInput.split(',').map((item) => '"${item.trim()}"').toList();
       log(result.toString());  // Output: ["Per Bedroom", "Per Bathroom", "Per Hour"]
 
       var response = await ApiService().cleanerPropertyAdd(
@@ -81,15 +77,21 @@ class AddRequirementCleanerSummeryController extends GetxController {
         addRequirementCleanerController.needsTextController.text,
         addRequirementCleanerController.zipCode.value,
         serviceId.value,
+
         addRequirementCleanerController.serviceLableId.toString(),
-          result.toString(),
+        result.toString(),
         addRequirementCleanerController.serviceQtyList.toString(),
         addRequirementCleanerController.serviceActualPrice.toString(),
+
         addRequirementCleanerController.selectServiceStandardDeep.value == "0"?"1":"2",
         cleanerCohostId.value,
           addRequirementCleanerController.washTowels.value,
           addRequirementCleanerController.cleanerSupplies.value,
-          addRequirementCleanerController.selectPropertyId.value??""
+          addRequirementCleanerController.selectPropertyId.value??"",
+          "",
+          "",
+          "",
+          "",
       );
       if (response['status'] == true) {
 
@@ -100,7 +102,7 @@ class AddRequirementCleanerSummeryController extends GetxController {
         log("Check prices formate  ${addRequirementCleanerController.serviceTotalPriceList.toString()}");
 
 
-        ToastClass.showToast('${response['message']}',);
+        // ToastClass.showToast('${response['message']}',);
 
         var data = {
           // "title": title.toString(),
@@ -157,7 +159,7 @@ class AddRequirementCleanerSummeryController extends GetxController {
       );
       if (response['status'] == true) {
 
-        ToastClass.showToast('${response['message']}',);
+        // ToastClass.showToast('${response['message']}',);
 
         var data = {
           // "title": title.toString(),
@@ -212,7 +214,7 @@ class AddRequirementCleanerSummeryController extends GetxController {
      );
       if (response['status'] == true) {
 
-        ToastClass.showToast('${response['message']}',);
+        // ToastClass.showToast('${response['message']}',);
 
         var data = {
           // "title": title.toString(),

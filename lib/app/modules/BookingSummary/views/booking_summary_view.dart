@@ -10,6 +10,7 @@ import 'package:power_maids/Utils/loader.dart';
 import 'package:power_maids/Utils/textformfield_ui_global.dart';
 import 'package:power_maids/app/modules/AddRequirementCleaner/controllers/add_requirement_cleaner_controller.dart';
 import 'package:power_maids/app/modules/BookingSummary/controllers/booking_summary_controller.dart';
+import 'package:power_maids/app/modules/ExtraworkAddScreen/controllers/extrawork_add_screen_controller.dart';
 import 'package:power_maids/app/modules/ExtraworkAddScreen/priceforairbnb_dynamic_ui.dart';
 import 'package:power_maids/app/modules/MaidDetails/controllers/maid_details_controller.dart';
 import '../../../../Payment/stripe_payment.dart' as payment;
@@ -25,6 +26,8 @@ class BookingSummaryView extends GetView<BookingSummaryController> {
 
     MaidDetailsController maidDetailsController = Get.put(MaidDetailsController());
     AddRequirementCleanerController addRequirementCleanerController = Get.put(AddRequirementCleanerController());
+    ExtraworkAddScreenController extraworkAddScreenController = Get.put
+      (ExtraworkAddScreenController());
 
 
     double af = controller.adminFees.value;
@@ -458,6 +461,49 @@ class BookingSummaryView extends GetView<BookingSummaryController> {
                   ),
                 ),
 
+              const SizedBox(
+                height: 10,
+              ),
+              /// Extra Works
+              Textwidget(
+                text: "Some Extra Works",
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                color: Colors.black45,
+              ),
+              ListView.builder(
+                  itemCount: extraworkAddScreenController.extraServicesId.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (buildContext, index){
+
+                    return  Padding(
+                        padding: const EdgeInsets.only(top: 10,left: 12, right: 12, bottom: 5),
+                        child:  Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Textwidget(
+                              text: extraworkAddScreenController.extraServicesTitle[index],
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            Textwidget(
+                              text: "\$${extraworkAddScreenController.extraServicesPrice[index]}",
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ],
+                        )
+                    );
+                  }
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Divider(
+                thickness: 1,
+                color: AppStyles.deviderColor,
+              ),
               const SizedBox(
                 height: 10,
               ),

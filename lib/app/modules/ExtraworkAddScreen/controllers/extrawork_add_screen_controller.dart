@@ -16,20 +16,31 @@ class ExtraworkAddScreenController extends GetxController {
   final serviceName ="".obs;
   final isLoading =false.obs;
 
-  final addExtraServices = [].obs;
+  final extraServicesId = [].obs;
+  final extraServicesTitle = [].obs;
+  final extraServicesQty = [].obs;
+  final extraServicesPrice = [].obs;
 
 
-  void toggleItemSelection(String item) {
-    if (addExtraServices.contains(item)) {
-      addExtraServices.remove(item);
+  void toggleItemSelection(String id,String title,String price) {
+    if (extraServicesId.contains(id)) {
+      extraServicesId.remove(id);
+      extraServicesTitle.remove(title);
+      extraServicesQty.remove("1");
+      extraServicesPrice.remove(price);
+
+      print("extra service title remove-- ${extraServicesTitle}");
     } else {
-      addExtraServices.add(item);
-      // print("extra item list id ${addExtraServices[0]}");
+      extraServicesId.add(id);
+      extraServicesTitle.add(title);
+      extraServicesQty.add("1");
+      extraServicesPrice.add(price);
+      print("extra service title add-- ${extraServicesTitle}");
     }
   }
 
   bool isItemSelected(String item) {
-    return addExtraServices.contains(item);
+    return extraServicesId.contains(item);
   }
 
   @override

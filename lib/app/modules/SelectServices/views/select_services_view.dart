@@ -239,6 +239,8 @@ class SelectServicesView extends GetView<SelectServicesController> {
                   "title": controller.title.toString(),
                   "id": controller.id.toString(),
                   'user_type': controller.userType.value,
+                  'service_id': controller.selectedServiceId.value,
+                  'service_name': controller.selectedServiceName.value,
                   'address':
                       controller.googleMapService.addressController.value.text,
                   'lat': controller.googleMapService.latitude.value.toString(),
